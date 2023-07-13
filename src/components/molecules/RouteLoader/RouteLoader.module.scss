@@ -1,0 +1,22 @@
+@import 'styles/vars';
+@import 'styles/mixins';
+
+.wrapper {
+  width: 100%;
+  @extend %flex-center;
+
+  &__inner {
+    width: 200px;
+    height: 200px;
+
+    div {
+      width: 200px;
+      height: 200px;
+      border-width: 5px;
+
+      &:nth-child(1) {
+        border-color: silver;
+      }
+    }
+  }
+}

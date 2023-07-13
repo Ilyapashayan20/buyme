@@ -1,0 +1,10 @@
+@import 'styles/vars';
+
+.wrapper {
+  padding-left: 104px;
+  width: 100%;
+
+  @media (max-width: $desktop) {
+    padding-left: 0;
+  }
+}

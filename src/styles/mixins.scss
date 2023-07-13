@@ -1,0 +1,31 @@
+
+
+@mixin svgFill($color, $size: false) {
+  svg {
+    @if $size {
+      width: $size;
+      height: $size;
+    }
+
+    path {
+      transition: all 0.5s;
+      fill: $color;
+      @content;
+    }
+  }
+}
+
+@mixin svgSize($size, $minMaxSize: false) {
+  svg {
+    width: $size;
+    height: $size;
+
+    @if $minMaxSize {
+      min-width: $minMaxSize;
+      min-height: $minMaxSize;
+      max-width: $minMaxSize;
+      max-height: $minMaxSize;
+    }
+  }
+}
+
