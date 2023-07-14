@@ -1,0 +1,19 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  @extend %flex-column;
+  gap: 32px;
+  padding: 120px 120px 0;
+
+  &__content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 285px);
+    align-content: center;
+    justify-content: center;
+    row-gap: 32px;
+    column-gap: 20px;
+  }
+}

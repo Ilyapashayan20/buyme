@@ -1,0 +1,31 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  text-align: center;
+  gap: 12px;
+  @extend %flex-column-center;
+
+  &__title_container {
+    gap: 12px;
+    @extend %flex-align;
+  }
+
+  &__line {
+    width: 32px;
+    height: 4px;
+    background-color: #ab0000;
+    border-radius: 20px;
+  }
+
+  &__title {
+    color: #1a1a1a;
+    @extend %heading-3;
+  }
+
+  &__subtitle {
+    color: #4c5563;
+    @extend %secondary-1;
+  }
+}
