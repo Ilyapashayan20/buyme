@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
-import { Title, Card } from 'components'
 import { itemData } from 'utils/shared/itemsData'
+import { Title, Card, Button } from 'components'
 
 import styles from './Novelty.module.scss'
 
@@ -25,6 +25,8 @@ const Novelty: FC = () => {
       <Title title='Новинки' subtitle={subtitle} />
 
       <div className={styles.wrapper__content}>{renderItems}</div>
+
+      <Button className={styles.wrapper__button}>Дивитися усі</Button>
     </div>
   )
 }
