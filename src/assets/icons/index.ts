@@ -1,4 +1,8 @@
-export { ReactComponent as UserIcon } from "./user.svg";
-export { ReactComponent as HeartIcon } from "./heart.svg";
-export { ReactComponent as SearchIcon } from "./search.svg";
-export { ReactComponent as ShopCartIcon } from "./shopcart.svg";
+export { ReactComponent as ListIcon } from './list.svg'
+export { ReactComponent as LogoIcon } from './logo.svg'
+export { ReactComponent as UserIcon } from './user.svg'
+export { ReactComponent as HeartIcon } from './heart.svg'
+export { ReactComponent as SearchIcon } from './search.svg'
+export { ReactComponent as ShopCartIcon } from './shopcart.svg'
+export { ReactComponent as StarIcon } from './star.svg'
+export { ReactComponent as CheckedIcon } from './checked.svg'

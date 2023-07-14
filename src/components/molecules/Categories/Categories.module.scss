@@ -1,0 +1,29 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  gap: 32px;
+  padding: 120px 120px 0;
+  @extend %flex-column-center;
+
+  &__content {
+    gap: 25px;
+    flex-wrap: wrap;
+    @extend %flex-center;
+  }
+
+  &__item {
+    gap: 10px;
+    @extend %flex-column-center;
+  }
+
+  &__title {
+    color: #1a1a1a;
+    white-space: nowrap;
+    width: 150px;
+    text-overflow: ellipsis;
+    @extend %secondary-1;
+    @extend %flex-center;
+  }
+}
