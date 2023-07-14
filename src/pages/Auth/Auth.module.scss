@@ -1,0 +1,35 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+  max-width: 448px;
+  margin: auto;
+  margin-top: 72px;
+  gap: 24px;
+  @extend %flex-column;
+
+  &__title {
+    color: black;
+    font-size: 41px;
+    line-height: 41px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  &__link {
+    text-align: center;
+    color: #ab0000;
+    @extend %micro-3, %flex-justify-center;
+  }
+
+  &__frame {
+    max-width: 387px;
+    @extend %micro-2;
+
+    b {
+      color: #ab0000;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+    gap: 6px;
+    @extend %flex-column;
+
+    &__lable {
+        color: #959595;
+        @extend %micro-2;
+    }
+
+    &__input {
+        border: 1px solid #95959533;
+        border-radius: 6px;
+        padding: 16px 24px;
+
+        &::placeholder {
+            color: #95959533;
+        }
+    }
+}
