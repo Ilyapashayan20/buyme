@@ -6,3 +6,6 @@ export { ReactComponent as SearchIcon } from './search.svg'
 export { ReactComponent as ShopCartIcon } from './shopcart.svg'
 export { ReactComponent as StarIcon } from './star.svg'
 export { ReactComponent as CheckedIcon } from './checked.svg'
+export { ReactComponent as CloseIcon } from './close.svg'
+export { ReactComponent as CogIcon } from './cog.svg'
+
