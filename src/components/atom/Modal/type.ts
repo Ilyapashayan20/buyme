@@ -1,5 +1,6 @@
 export type ModalProps = {
     title?: string,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    onClose: () => void
   }
   

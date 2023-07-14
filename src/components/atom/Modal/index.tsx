@@ -3,7 +3,7 @@ import styles from './Modal.module.scss'
 import { ModalProps } from './type'
 import { CloseIcon, CogIcon } from 'assets'
 
-const Modal: FC<ModalProps> = ({ title, children }) => (
+const Modal: FC<ModalProps> = ({ title, children, onClose }) => (
   <div className={styles.modal}>
     <div className={styles.modal__block}>
       <div className={styles.modal__block__header}>
@@ -15,7 +15,7 @@ const Modal: FC<ModalProps> = ({ title, children }) => (
             <CogIcon />{' '}
           </div>
         )}
-        <button className={styles.modal__block__header__close__btn}>
+        <button onClick={onClose} className={styles.modal__block__header__close__btn}>
           <CloseIcon />
         </button>
       </div>
