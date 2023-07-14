@@ -1,7 +1,8 @@
 import { BrowserRouter } from 'react-router-dom'
 
+import { PageLayout } from 'components'
+
 import './styles/index.global.scss'
-import { PageLayout } from './components'
 
 const App = () => (
   <BrowserRouter>

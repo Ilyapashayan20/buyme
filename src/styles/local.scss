@@ -187,12 +187,6 @@ body {
   font-size: 16px;
   font-weight: 400;
   background-attachment: fixed;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Nunito';
   min-height: -webkit-fill-available;
-
-  @media (max-width: 1256px) {
-    &::-webkit-scrollbar {
-      width: 0;
-    }
-  }
 }

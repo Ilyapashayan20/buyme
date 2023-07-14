@@ -1,0 +1,63 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  padding: 24px 120px;
+  gap: 32px;
+  background-color: #1a1a1a;
+  @extend %flex-center;
+  height: 80px;
+
+  &__logo {
+    min-width: 180px;
+    min-height: 39px;
+  }
+
+  &__catalog {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    gap: 12px;
+    padding: 14px 24px;
+    color: #fff;
+    @extend %secondary-1;
+    @extend %flex-align;
+  }
+
+  &__search {
+    width: 100%;
+    max-width: 590px;
+    @extend %flex-align;
+
+    &__input {
+      width: 100%;
+      background-color: #fff;
+      padding-left: 16px;
+      border-radius: 8px 0 0 8px;
+      border: none;
+      height: 48px;
+      @extend %flex-align;
+    }
+
+    &__button {
+      padding: 12px;
+      border-radius: 0px 4px 4px 0px;
+      background-color: #ab0000;
+      max-height: 48px;
+      border: none;
+    }
+  }
+
+  &__icons_group {
+    gap: 32px;
+    @extend %flex-align;
+
+    &__item {
+      @extend %flex-column-center;
+      gap: 8px;
+      color: #959595;
+      text-align: center;
+      @extend %secondary-1;
+    }
+  }
+}
