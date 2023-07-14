@@ -9,6 +9,8 @@ export type TRoutePageType = {
 
 export enum ERoutePaths {
   Home = '/',
+  Login = '/login',
+  Signup = '/signup',
   Error = '*',
   Lesson = '/course/:id/lessons',
   Graduate = '/graduate',

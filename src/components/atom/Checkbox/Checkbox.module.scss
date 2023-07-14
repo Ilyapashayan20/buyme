@@ -1,0 +1,36 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+    gap: 10px;
+    @extend %flex-align
+}
+
+
+
+.checkbox {
+    cursor: pointer;
+
+    &[type='checkbox'] {
+        width: 20px;
+        height: 20px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 2px solid #ab0000;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.3s ease-in-out;
+        &:checked {
+            border-color: #ab0000;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('../../../assets/icons/checked.png');
+        }
+    }
+
+    &__title {
+        color: black;
+        @extend %micro-2;
+    }
+}
