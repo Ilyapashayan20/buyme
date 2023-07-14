@@ -20,7 +20,7 @@
 
   &__link {
     text-align: center;
-    color: #AB0000;
+    color: #ab0000;
     @extend %micro-3, %flex-justify-center;
   }
 
@@ -29,7 +29,7 @@
     @extend %micro-2;
 
     b {
-      color: #AB0000
+      color: #ab0000;
     }
   }
 }

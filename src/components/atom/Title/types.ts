@@ -3,4 +3,3 @@ export type TTitleProps = {
   subtitle: string
   className?: string
 }
-
