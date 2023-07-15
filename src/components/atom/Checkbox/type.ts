@@ -1,3 +1,3 @@
-export type CheckboxProps = {
-    title?:string
+export type TCheckboxProps = {
+  title?: string
 }

@@ -16,7 +16,6 @@ const Novelty: FC = () => {
       rate={element.rate}
       reviwers={element.reviwers}
       price={element.price}
-      isNew={element.isNew}
     />
   ))
 

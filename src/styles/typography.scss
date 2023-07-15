@@ -4,6 +4,12 @@
   line-height: 100%;
 }
 
+%heading-2 {
+  font-size: 65px;
+  font-weight: 600;
+  line-height: 100%;
+}
+
 %heading-3 {
   font-size: 41px;
   font-weight: 700;
@@ -12,6 +18,19 @@
 
 %subheading-1 {
   font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+%subheading-2 {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 100%;
+  letter-spacing: -0.26px;
+}
+
+%subheading-3 {
+  font-size: 26px;
   font-weight: 700;
   line-height: 100%;
 }
@@ -25,12 +44,6 @@
 %micro-2 {
   font-size: 12px;
   font-weight: 400;
-  line-height: 100%;
-}
-
-%micro-3 {
-  font-size: 16px;
-  font-weight: 600;
   line-height: 100%;
 }
 

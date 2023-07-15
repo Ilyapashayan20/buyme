@@ -7,39 +7,41 @@ import styles from './Header.module.scss'
 const Header: FC = () => {
   return (
     <header className={styles.wrapper}>
-      <LogoIcon className={styles.wrapper__logo} />
+      <div className={styles.wrapper__container}>
+        <LogoIcon className={styles.wrapper__logo} />
 
-      <button className={styles.wrapper__catalog}>
-        <ListIcon />
+        <button className={styles.wrapper__catalog}>
+          <ListIcon />
 
-        <p>Каталог</p>
-      </button>
-
-      <div className={styles.wrapper__search}>
-        <input placeholder='Введіть назву товару або артикул' type='text' className={styles.wrapper__search__input} />
-
-        <button className={styles.wrapper__search__button}>
-          <SearchIcon />
+          <p>Каталог</p>
         </button>
-      </div>
 
-      <div className={styles.wrapper__icons_group}>
-        <div className={styles.wrapper__icons_group__item}>
-          <HeartIcon />
+        <div className={styles.wrapper__search}>
+          <input placeholder='Введіть назву товару або артикул' type='text' className={styles.wrapper__search__input} />
 
-          <p>Бажане</p>
+          <button className={styles.wrapper__search__button}>
+            <SearchIcon />
+          </button>
         </div>
 
-        <div className={styles.wrapper__icons_group__item}>
-          <ShopCartIcon />
+        <div className={styles.wrapper__icons_group}>
+          <div className={styles.wrapper__icons_group__item}>
+            <HeartIcon />
 
-          <p>Кошик</p>
-        </div>
+            <p>Бажане</p>
+          </div>
 
-        <div className={styles.wrapper__icons_group__item}>
-          <UserIcon />
+          <div className={styles.wrapper__icons_group__item}>
+            <ShopCartIcon />
 
-          <p>Увійти</p>
+            <p>Кошик</p>
+          </div>
+
+          <div className={styles.wrapper__icons_group__item}>
+            <UserIcon />
+
+            <p>Увійти</p>
+          </div>
         </div>
       </div>
     </header>

@@ -1,0 +1,67 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  padding: 120px 24px 0;
+
+  gap: 40px;
+  @extend %flex-center;
+
+  &__image img {
+    border-radius: 16px;
+    object-fit: contain;
+  }
+
+  &__description {
+    gap: 32px;
+    width: 100%;
+    max-width: 464px;
+    @extend %flex-column;
+
+    &__title {
+      color: $black-100;
+      @extend %heading-3;
+    }
+
+    &__stars {
+      margin-top: -20px;
+    }
+
+    &__price {
+      color: $black-100;
+      @extend %subheading-3;
+    }
+
+    &__text {
+      color: $black-300;
+      @extend %secondary-1;
+    }
+
+    &__about {
+      width: 100%;
+      gap: 12px;
+      @extend %flex-justify-between;
+
+      > div {
+        gap: 12px;
+        @extend %flex-column;
+      }
+
+      &__item {
+        gap: 12px;
+        @extend %flex-align;
+
+        &__text {
+          color: $black;
+          @extend %secondary-1;
+        }
+
+        svg {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

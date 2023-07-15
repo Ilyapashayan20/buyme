@@ -1,0 +1,60 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 24px 0;
+  gap: 32px;
+  @extend %flex-column;
+
+  &__container {
+    gap: 40px;
+    @extend %flex-align;
+
+    &__image > img {
+      object-fit: contain;
+    }
+
+    &__description {
+      gap: 32px;
+      @extend %flex-column;
+
+      &__title {
+        color: $black-200;
+        @extend %heading-3;
+      }
+
+      &__subtitle {
+        color: $black-300;
+        @extend %secondary-1;
+      }
+    }
+  }
+
+  &__footer {
+    gap: 40px;
+    @extend %flex-align;
+
+    &__item {
+      @extend %flex-column;
+      width: 100%;
+      max-width: 270px;
+
+      &__title {
+        color: $red;
+        @extend %heading-2;
+      }
+
+      &__subtitle {
+        padding-top: 12px;
+        border-top: 1px solid $opacity-1;
+        color: $black-300;
+        width: 100%;
+        @extend %micro-3;
+      }
+    }
+  }
+}

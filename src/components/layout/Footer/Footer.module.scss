@@ -1,0 +1,75 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  padding: 32px 32px 55px;
+  background-color: $black-100;
+
+  &__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 16px;
+    @extend %flex-justify-between-center;
+
+    @media (max-width: $desktop) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+    }
+
+    > svg {
+      min-width: 180px;
+      min-height: 39px;
+    }
+  }
+
+  &__center {
+    gap: 40px;
+    @extend %flex-align;
+
+    @media (max-width: $desktop) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    &__text {
+      color: $black-400;
+      white-space: nowrap;
+      @extend %secondary-1;
+    }
+  }
+
+  &__social {
+    gap: 32px;
+    @extend %flex-align;
+
+    @media (max-width: $desktop) {
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    &__icons {
+      gap: 16px;
+      @extend %flex-align;
+    }
+
+    &__phone {
+      gap: 8px;
+      @extend %flex-align;
+
+      &__number {
+        color: $white;
+        @extend %secondary-1;
+        white-space: nowrap;
+      }
+    }
+  }
+}
