@@ -1,7 +1,8 @@
 import type { FC } from 'react'
 
+import { Ad, Categories, EconomYourTime, FooterImages, Novelty, Product, Promotions } from 'components'
+
 import styles from './Home.module.scss'
-import { Categories, Novelty } from 'components'
 
 const Home: FC = () => {
   return (
@@ -9,6 +10,16 @@ const Home: FC = () => {
       <Categories />
 
       <Novelty />
+
+      <EconomYourTime />
+
+      <Ad />
+
+      <Product />
+
+      <Promotions />
+
+      <FooterImages />
     </section>
   )
 }

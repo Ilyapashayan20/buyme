@@ -1,0 +1,20 @@
+@import 'styles/vars';
+@import 'styles/mixins';
+
+.wrapper {
+  width: 100%;
+  margin-top: 120px;
+  gap: 32px;
+  @extend %flex-column;
+
+  &__images {
+    width: 100%;
+    overflow-x: auto;
+    @extend %flex-justify-evenly;
+    @include scrollbarHorizontal(0);
+
+    @media (max-width: $wide-l) {
+      justify-content: flex-start;
+    }
+  }
+}

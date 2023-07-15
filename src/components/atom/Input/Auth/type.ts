@@ -1,5 +1,5 @@
-export type AuthInputProps = {
-    lable: string,
-    placeholder?: string,
-    type: string
+export type TAuthInputProps = {
+  label: string
+  placeholder?: string
+  type: string
 }

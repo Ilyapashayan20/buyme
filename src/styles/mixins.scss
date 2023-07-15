@@ -1,5 +1,3 @@
-
-
 @mixin svgFill($color, $size: false) {
   svg {
     @if $size {
@@ -29,3 +27,36 @@
   }
 }
 
+@mixin scrollbar($width) {
+  &::-webkit-scrollbar {
+    width: $width;
+
+    @content;
+  }
+}
+
+@mixin scrollbarHorizontal($height) {
+  &::-webkit-scrollbar {
+    height: $height;
+
+    @content;
+  }
+}
+
+@mixin cardsWrapper() {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 285px);
+  align-content: center;
+  justify-content: center;
+  row-gap: 32px;
+  column-gap: 20px;
+
+  @media (max-width: $wide) {
+    grid-template-columns: repeat(3, 285px);
+  }
+
+  @media (max-width: $tablet-l) {
+    grid-template-columns: repeat(2, 285px);
+  }
+}

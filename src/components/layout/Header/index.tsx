@@ -52,46 +52,48 @@ const Header: FC = () => {
 
   return (
     <header className={styles.wrapper}>
-      <LogoIcon className={styles.wrapper__logo} />
+      <div className={styles.wrapper__container}>
+        <LogoIcon className={styles.wrapper__logo} />
 
-      <button className={styles.wrapper__catalog}>
-        <ListIcon />
+        <button className={styles.wrapper__catalog}>
+          <ListIcon />
 
-        <p>Каталог</p>
-      </button>
-
-      <div className={styles.wrapper__search}>
-        <input placeholder='Введіть назву товару або артикул' type='text' className={styles.wrapper__search__input} />
-
-        <button className={styles.wrapper__search__button}>
-          <SearchIcon />
+          <p>Каталог</p>
         </button>
-      </div>
 
-      <div className={styles.wrapper__icons_group}>
-        <div className={styles.wrapper__icons_group__item}>
-          <HeartIcon />
+        <div className={styles.wrapper__search}>
+          <input placeholder='Введіть назву товару або артикул' type='text' className={styles.wrapper__search__input} />
 
-          <p>Бажане</p>
+          <button className={styles.wrapper__search__button}>
+            <SearchIcon />
+          </button>
         </div>
 
-        <div className={styles.wrapper__icons_group__item}>
-          <ShopCartIcon />
+        <div className={styles.wrapper__icons_group}>
+          <div className={styles.wrapper__icons_group__item}>
+            <HeartIcon />
 
-          <p>Кошик</p>
-        </div>
+            <p>Бажане</p>
+          </div>
 
-        <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
-          <UserIcon />
+          <div className={styles.wrapper__icons_group__item}>
+            <ShopCartIcon />
 
-          <p>Увійти</p>
+            <p>Кошик</p>
+          </div>
+
+          <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
+            <UserIcon />
+
+            <p>Увійти</p>
+          </div>
         </div>
       </div>
       {showAuthModal && (
         <Modal onClose={closeModal} title={modalState.title}>
           {modalState.showLogin && (
             <div className={styles.modal__form}>
-              <InputAuth lable='Телефон' type='tel' placeholder='+38 (0__) ___-__-__' />
+              <InputAuth label='Телефон' type='tel' placeholder='+38 (0__) ___-__-__' />
               <Checkbox title='Запам’ятати мене' />
               <Button onClick={handleLoginClick}>Увійти</Button>
               <button onClick={handleRegisterClick} className={styles.modal__form__link}>
@@ -115,8 +117,8 @@ const Header: FC = () => {
 
           {modalState.showRegister && (
             <div className={styles.modal__form}>
-              <InputAuth lable='Ім’я' type='text' />
-              <InputAuth lable='Телефон' type='tel' placeholder='+38 (0__) ___-__-__' />
+              <InputAuth label='Ім’я' type='text' />
+              <InputAuth label='Телефон' type='tel' placeholder='+38 (0__) ___-__-__' />
               <p className={styles.modal__form__frame}>
                 Реєструючись, ви погоджуєтеся з умовами <b>положення про обробку і захист персональних даних</b> та{' '}
                 <b>угодою користувача</b>

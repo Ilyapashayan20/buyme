@@ -1,0 +1,11 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+  gap: 6px;
+  @extend %flex-align;
+
+  &__active {
+    fill: #ffc107;
+  }
+}

@@ -1,4 +1,5 @@
 @import 'styles/vars';
+@import 'styles/colors';
 @import 'styles/typography';
 
 .wrapper {
@@ -21,15 +22,15 @@
     cursor: pointer;
 
     path {
-      fill: #ab0000;
+      fill: $red;
     }
 
     &:hover {
-      fill: #ab0000;
+      fill: $red;
     }
 
     &__active {
-      fill: #ab0000;
+      fill: $red;
     }
   }
 
@@ -46,15 +47,15 @@
   }
 
   &__new {
-    color: #fff;
+    color: $white;
     padding: 4px 8px;
-    background-color: #ab0000;
+    background-color: $red;
     @extend %micro-1;
     width: max-content;
   }
 
   &__title {
-    color: #1a1a1a;
+    color: $black-100;
     text-overflow: ellipsis;
     white-space: nowrap;
     @extend %secondary-1;
@@ -70,17 +71,28 @@
     @extend %flex-align;
 
     &__active {
-      fill: #ffc107;
+      fill: $yellow;
     }
   }
 
   &__reviewers {
-    color: #4c5563;
+    color: $black-300;
     @extend %micro-2;
   }
 
   &__price {
-    color: #1a1a1a;
+    color: $black-100;
     @extend %subheading-1;
+
+    &__promotion {
+      color: $red;
+      @extend %subheading-1;
+    }
+
+    &__old {
+      color: $black-300;
+      @extend %micro-3;
+      text-decoration: line-through;
+    }
   }
 }

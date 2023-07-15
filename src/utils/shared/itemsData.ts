@@ -1,4 +1,4 @@
-import { TCardProps } from 'components/atom/Card/types'
+import type { TCardProps } from 'components/atom/Card/types'
 
 export const itemData: TCardProps[] = [
   {
@@ -7,7 +7,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -15,7 +14,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -23,7 +21,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -31,7 +28,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -39,7 +35,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -47,7 +42,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -55,7 +49,6 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
   {
     image: 'images/soldier.png',
@@ -63,6 +56,5 @@ export const itemData: TCardProps[] = [
     rate: 4,
     reviwers: 12,
     price: 799,
-    isNew: true,
   },
 ]

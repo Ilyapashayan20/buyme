@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import { Header } from 'components'
+import { Footer, Header } from 'components'
 import { RoutesWrapper } from 'router'
 
 import styles from './PageLayout.module.scss'
@@ -11,6 +11,8 @@ const PageLayout: FC = () => {
       <Header />
 
       <RoutesWrapper />
+
+      <Footer />
     </main>
   )
 }

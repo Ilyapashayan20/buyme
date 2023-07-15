@@ -6,7 +6,7 @@ import { HeartIcon, StarIcon } from 'assets'
 import type { TCardProps } from './types'
 import styles from './Card.module.scss'
 
-const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, isNew = false, promotion }) => {
+const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, oldPrice }) => {
   const starIconsArr = new Array(5).fill('')
 
   const renderStars = starIconsArr.map((_, index) => (
@@ -30,8 +30,11 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, isNew = fal
       />
 
       <div className={styles.wrapper__description}>
-        {isNew && <div className={styles.wrapper__new}>Новинки</div>}
-        {!!promotion && <div className={styles.wrapper__new}>{promotion} %</div>}
+        {!!promotion ? (
+          <div className={styles.wrapper__new}>{promotion} %</div>
+        ) : (
+          <div className={styles.wrapper__new}>Новинки</div>
+        )}
 
         <p className={styles.wrapper__title}>{title}</p>
 
@@ -41,7 +44,13 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, isNew = fal
           <p className={styles.wrapper__reviewers}>{reviwers} відгуків</p>
         </div>
 
-        <p className={styles.wrapper__price}>{price} ₴ / дроп ціна</p>
+        {!promotion ? (
+          <p className={styles.wrapper__price}>{price} ₴ / дроп ціна</p>
+        ) : (
+          <p className={styles.wrapper__price__promotion}>
+            {price} ₴ <span className={styles.wrapper__price__old}>{oldPrice}</span>
+          </p>
+        )}
       </div>
     </div>
   )
