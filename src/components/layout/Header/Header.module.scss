@@ -64,7 +64,77 @@
       gap: 8px;
       color: #959595;
       text-align: center;
+      cursor: pointer;
       @extend %secondary-1;
+    }
+  }
+
+}
+
+
+.modal__form {
+  padding: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  button{
+    width: 100%;
+  }
+
+  &__link {
+    text-align: center;
+    color: #ab0000;
+    @extend %micro-3, %flex-justify-center;
+  }
+
+  &__frame {
+    max-width: 387px;
+    @extend %micro-2;
+
+    b {
+      color: #ab0000;
+    }
+  }
+}
+
+.modal__login__confirm{
+  min-width: 412px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  p{
+    font-weight:  400;
+    max-width: 322px;
+    margin: auto;
+    text-align: center;
+    @extend %micro-3 ;
+    b{
+      font-weight: 700;
+    }
+  }
+  span{
+    font-weight: 700;
+    font-size: 65px;
+    line-height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: #AB0000;
+  }
+
+  &__buttons{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    button{
+      padding: 16px 32px;
+    }
+    &__btn2{
+      background: white;
+      color: #AB0000;
+      border: 2px solid #ab0000;
     }
   }
 }
