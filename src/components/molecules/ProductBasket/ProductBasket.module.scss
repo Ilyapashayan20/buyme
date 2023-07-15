@@ -1,0 +1,123 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  padding: 16px 0px;
+  border-bottom:1px solid #95959533 ;
+
+ &__container{
+    display: flex;
+    gap: 24px;
+  &__image img {
+    object-fit: contain;
+  }
+  &__info{
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0px;
+    gap: 24px;
+    &__title{
+        font-weight: 500;
+        @extend %micro-3;
+        span{
+            font-weight: 700;
+            @extend %micro-3;
+        }
+    }
+    &__main{
+        display: flex;
+        gap: 16px;
+        &__item{
+            font-size: 12px;
+            font-weight: 400;
+            display: flex;
+            gap: 3px;
+            span{
+                color:#959595;
+            }
+        }
+    }
+    &__quantity{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        &__buttons{
+            display: flex;
+           
+            align-items: center;
+            gap: 1px;
+            button{
+                display: flex;
+                align-items: center;
+                background: #F5F5F5;
+                border-radius: 4px;
+                padding: 8px;
+            }
+            &__count{
+                background: #F5F5F5;
+                height: 100%;
+                text-align: center;
+                width: 72px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+  }
+
+  &__description {
+    gap: 32px;
+    width: 100%;
+    max-width: 464px;
+    @extend %flex-column;
+
+    &__title {
+      color: $black-100;
+      @extend %heading-3;
+    }
+
+    &__stars {
+      margin-top: -20px;
+    }
+
+    &__price {
+      color: $black-100;
+      @extend %subheading-3;
+    }
+
+    &__text {
+      color: $black-300;
+      @extend %secondary-1;
+    }
+
+    &__about {
+      width: 100%;
+      gap: 12px;
+      @extend %flex-justify-between;
+
+      > div {
+        gap: 12px;
+        @extend %flex-column;
+      }
+
+      &__item {
+        gap: 12px;
+        @extend %flex-align;
+
+        &__text {
+          color: $black;
+          @extend %secondary-1;
+        }
+
+        svg {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+}

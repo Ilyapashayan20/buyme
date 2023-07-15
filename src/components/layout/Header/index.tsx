@@ -4,6 +4,7 @@ import styles from './Header.module.scss'
 import { Button, Checkbox, Modal } from 'components/atom'
 import InputAuth from 'components/atom/Input/Auth'
 import { TModalState } from './type'
+import { Link } from 'react-router-dom'
 
 const Header: FC = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
@@ -76,11 +77,11 @@ const Header: FC = () => {
             <p>Бажане</p>
           </div>
 
-          <div className={styles.wrapper__icons_group__item}>
+          <Link to='/basket' className={styles.wrapper__icons_group__item}>
             <ShopCartIcon />
 
             <p>Кошик</p>
-          </div>
+          </Link>
 
           <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
             <UserIcon />

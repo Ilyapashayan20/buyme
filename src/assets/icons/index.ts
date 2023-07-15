@@ -12,3 +12,7 @@ export { ReactComponent as FacebookIcon } from './facebook.svg'
 export { ReactComponent as PhoneIcon } from './phone.svg'
 export { ReactComponent as CloseIcon } from './close.svg'
 export { ReactComponent as CogIcon } from './cog.svg'
+export { ReactComponent as MinusIcon } from './minus.svg'
+export { ReactComponent as PlusIcon } from './plus.svg'
+export { ReactComponent as HeartIcon1 } from './heart(1).svg'
+
