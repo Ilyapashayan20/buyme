@@ -1,3 +1,5 @@
+export * from './catalog'
+
 export { ReactComponent as ListIcon } from './list.svg'
 export { ReactComponent as LogoIcon } from './logo.svg'
 export { ReactComponent as UserIcon } from './user.svg'
@@ -18,3 +20,4 @@ export { ReactComponent as BurgerIcon } from './burger.svg'
 export { ReactComponent as MinusIcon } from './minus.svg'
 export { ReactComponent as PlusIcon } from './plus.svg'
 export { ReactComponent as HeartIcon1 } from './heart(1).svg'
+export { ReactComponent as ArrowRIghtIcon } from './arrowRight.svg'

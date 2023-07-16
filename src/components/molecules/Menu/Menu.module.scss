@@ -1,0 +1,124 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/typography';
+
+.wrapper {
+  width: max-content;
+
+  &__container {
+    height: 100vh;
+    width: 100%;
+    background: rgba(26, 26, 26, 0.5);
+    backdrop-filter: blur(2px);
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    top: 80px;
+    opacity: 0;
+    overflow: hidden;
+    transition: 0.6s;
+    padding: 0 15px 15px;
+    @extend %flex-justify-center;
+  }
+
+  &__catalog {
+    border-radius: 8px;
+    background-color: $opacity-2;
+    gap: 12px;
+    padding: 14px 24px;
+    color: $white;
+    height: 48px;
+    width: 140px;
+    @extend %secondary-1;
+    @extend %flex-align;
+    @include svgFill($white);
+  }
+
+  &__dropdown {
+    top: 80px;
+    background-color: $white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 1280px;
+    gap: 40px;
+    padding: 40px 40px 40px 0;
+    display: flex;
+    max-height: 732px;
+
+    &__droped {
+      opacity: 1;
+    }
+
+    &__right {
+      width: 100%;
+      gap: 102px;
+      padding-top: 42px;
+      display: flex;
+      flex-wrap: wrap;
+
+      &__item {
+        gap: 10px;
+        @extend %flex-column;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      &__text {
+        color: $black-300;
+        @extend %secondary-1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 236px;
+
+        &__red {
+          color: $red;
+          @extend %secondary-3;
+          margin-top: 14px;
+        }
+      }
+    }
+
+    &__left {
+      width: 100%;
+      max-width: 420px;
+      @extend %flex-column;
+
+      &__title {
+        color: $red;
+        @extend %subheading-1;
+        margin-bottom: 32px;
+        padding-left: 40px;
+      }
+
+      &__item {
+        padding: 10px 10px 10px 40px;
+        width: 100%;
+        cursor: pointer;
+        transition: 0.5s;
+        @extend %flex-justify-between;
+
+        &__active,
+        &:hover {
+          background-color: $opacity-4;
+        }
+
+        > div {
+          gap: 12px;
+          @extend %flex-align;
+        }
+
+        &__text {
+          color: $black-100;
+          @extend %secondary-3;
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { type FC, useState } from 'react'
 
 import InputAuth from 'components/atom/Input/Auth'
-import { Button, Checkbox, Modal, Search } from 'components'
-import { BurgerIcon, HeartIcon, ListIcon, LogoIcon, ShopCartIcon, UserIcon } from 'assets'
+import { Button, Checkbox, Menu, Modal, Search } from 'components'
+import { BurgerIcon, HeartIcon, LogoIcon, ShopCartIcon, UserIcon } from 'assets'
 
 import type { TModalState } from './type'
 import styles from './Header.module.scss'
@@ -59,17 +59,15 @@ const Header: FC = () => {
   return (
     <header className={styles.wrapper}>
       <div className={styles.wrapper__container}>
-        <LogoIcon className={styles.wrapper__logo} />
+        <Link to='/'>
+          <LogoIcon className={styles.wrapper__logo} />
+        </Link>
 
         {isTablet ? (
           <BurgerIcon />
         ) : (
           <>
-            <button className={styles.wrapper__catalog}>
-              <ListIcon />
-
-              <p>Каталог</p>
-            </button>
+            <Menu />
 
             <Search />
 
