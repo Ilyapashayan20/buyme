@@ -12,7 +12,7 @@ const RatingStars: FC<TRate> = ({ rate, className }) => {
   const renderStars = useMemo(
     () =>
       starIconsArr.map((_, index) => (
-        <StarIcon key={index} className={classNames({ [styles.active]: index < rate })} />
+        <StarIcon key={index} className={classNames({ [styles.wrapper__active]: index < rate })} />
       )),
     [rate, starIconsArr]
   )

@@ -1,4 +1,5 @@
 @import 'styles/vars';
+@import 'styles/mixins';
 @import 'styles/typography';
 
 .wrapper {
@@ -9,10 +10,23 @@
   padding: 120px 24px 0;
   @extend %flex-column-center;
 
+  @media (max-width: $tablet-w) {
+    padding: 48px 15px 0;
+  }
+
   &__content {
     gap: 25px;
     flex-wrap: wrap;
     @extend %flex-center;
+
+    @media (max-width: $tablet-w) {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      @include scrollbarHorizontal(0);
+      max-width: 828px;
+      width: 100%;
+    }
   }
 
   &__item {

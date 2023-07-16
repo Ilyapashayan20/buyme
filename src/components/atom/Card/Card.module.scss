@@ -1,5 +1,6 @@
 @import 'styles/vars';
 @import 'styles/colors';
+@import 'styles/mixins';
 @import 'styles/typography';
 
 .wrapper {
@@ -11,6 +12,10 @@
   transition: 0.3s;
   position: relative;
 
+  @media (max-width: $tablet-w) {
+    max-width: 168px;
+  }
+
   &:hover {
     scale: 1.02;
   }
@@ -20,6 +25,10 @@
     right: 16px;
     top: 16px;
     cursor: pointer;
+
+    @media (max-width: $tablet-w) {
+      position: static;
+    }
 
     path {
       fill: $red;
@@ -37,6 +46,7 @@
   &__image {
     width: 100%;
     border-radius: 10px 10px 0px 0px;
+    object-fit: contain;
   }
 
   &__description {
@@ -50,39 +60,49 @@
     color: $white;
     padding: 4px 8px;
     background-color: $red;
-    @extend %micro-1;
     width: max-content;
+    @extend %micro-1;
   }
 
   &__title {
     color: $black-100;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: 253px;
+    overflow: hidden;
     @extend %secondary-1;
+
+    @media (max-width: $tablet-w) {
+      font-size: 14px;
+    }
   }
 
   &__rating {
     gap: 12px;
     @extend %flex-align;
-  }
 
-  &__stars {
-    gap: 6px;
-    @extend %flex-align;
-
-    &__active {
-      fill: $yellow;
+    @media (max-width: $tablet-w) {
+      @include svgSize(10px);
+      gap: 3px;
     }
   }
 
   &__reviewers {
     color: $black-300;
     @extend %micro-2;
+
+    @media (max-width: $tablet-w) {
+      font-size: 10px;
+    }
   }
 
   &__price {
     color: $black-100;
     @extend %subheading-1;
+
+    @media (max-width: $tablet-w) {
+      font-size: 16px;
+    }
 
     &__promotion {
       color: $red;
@@ -93,6 +113,16 @@
       color: $black-300;
       @extend %micro-3;
       text-decoration: line-through;
+    }
+  }
+
+  &__buy {
+    @extend %flex-align;
+    gap: 10px;
+
+    &__button {
+      padding: 10px;
+      font-size: 14px;
     }
   }
 }

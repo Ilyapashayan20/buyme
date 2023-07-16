@@ -1,17 +1,15 @@
 import { type FC, useState, useCallback } from 'react'
 import classNames from 'classnames'
 
-import { HeartIcon, StarIcon } from 'assets'
+import { HeartIcon } from 'assets'
+import { Button, RatingStars } from 'components'
 
 import type { TCardProps } from './types'
 import styles from './Card.module.scss'
+import { useResponsive } from 'hooks'
 
 const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, oldPrice }) => {
-  const starIconsArr = new Array(5).fill('')
-
-  const renderStars = starIconsArr.map((_, index) => (
-    <StarIcon key={index} className={classNames({ [styles.active]: index < rate })} />
-  ))
+  const { isTablet } = useResponsive()
 
   const [isLiked, setLiked] = useState<boolean>(false)
 
@@ -21,13 +19,15 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
 
   return (
     <div className={styles.wrapper}>
-      <img className={styles.wrapper__image} src={image} alt={title} width='100%' height='302px' />
+      <img className={styles.wrapper__image} src={image} alt={title} width='100%' height='auto' />
 
-      <HeartIcon
-        role='button'
-        onClick={onLikeClickCallback}
-        className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
-      />
+      {!isTablet && (
+        <HeartIcon
+          role='button'
+          onClick={onLikeClickCallback}
+          className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
+        />
+      )}
 
       <div className={styles.wrapper__description}>
         {!!promotion ? (
@@ -39,7 +39,7 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
         <p className={styles.wrapper__title}>{title}</p>
 
         <div className={styles.wrapper__rating}>
-          <div className={styles.wrapper__stars}>{renderStars}</div>
+          <RatingStars rate={rate} />
 
           <p className={styles.wrapper__reviewers}>{reviwers} відгуків</p>
         </div>
@@ -50,6 +50,18 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
           <p className={styles.wrapper__price__promotion}>
             {price} ₴ <span className={styles.wrapper__price__old}>{oldPrice}</span>
           </p>
+        )}
+
+        {isTablet && (
+          <div className={styles.wrapper__buy}>
+            <Button className={styles.wrapper__buy__button}>Купити</Button>
+
+            <HeartIcon
+              role='button'
+              onClick={onLikeClickCallback}
+              className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
+            />
+          </div>
         )}
       </div>
     </div>

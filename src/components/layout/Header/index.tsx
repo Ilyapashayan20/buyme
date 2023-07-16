@@ -1,9 +1,12 @@
-import { FC, useState } from 'react'
-import { HeartIcon, ListIcon, LogoIcon, SearchIcon, ShopCartIcon, UserIcon } from 'assets'
-import styles from './Header.module.scss'
-import { Button, Checkbox, Modal } from 'components/atom'
+import { type FC, useState } from 'react'
+
 import InputAuth from 'components/atom/Input/Auth'
-import { TModalState } from './type'
+import { Button, Checkbox, Modal, Search } from 'components'
+import { BurgerIcon, HeartIcon, ListIcon, LogoIcon, ShopCartIcon, UserIcon } from 'assets'
+
+import type { TModalState } from './type'
+import styles from './Header.module.scss'
+import { useResponsive } from 'hooks'
 
 const Header: FC = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
@@ -50,45 +53,48 @@ const Header: FC = () => {
     })
   }
 
+  const { isTablet } = useResponsive()
+
   return (
     <header className={styles.wrapper}>
       <div className={styles.wrapper__container}>
         <LogoIcon className={styles.wrapper__logo} />
 
-        <button className={styles.wrapper__catalog}>
-          <ListIcon />
+        {isTablet ? (
+          <BurgerIcon />
+        ) : (
+          <>
+            <button className={styles.wrapper__catalog}>
+              <ListIcon />
 
-          <p>Каталог</p>
-        </button>
+              <p>Каталог</p>
+            </button>
 
-        <div className={styles.wrapper__search}>
-          <input placeholder='Введіть назву товару або артикул' type='text' className={styles.wrapper__search__input} />
+            <Search />
 
-          <button className={styles.wrapper__search__button}>
-            <SearchIcon />
-          </button>
-        </div>
+            <div className={styles.wrapper__icons_group}>
+              <div className={styles.wrapper__icons_group__item}>
+                <HeartIcon />
 
-        <div className={styles.wrapper__icons_group}>
-          <div className={styles.wrapper__icons_group__item}>
-            <HeartIcon />
+                <p>Бажане</p>
+              </div>
 
-            <p>Бажане</p>
-          </div>
+              <div className={styles.wrapper__icons_group__item}>
+                <ShopCartIcon />
 
-          <div className={styles.wrapper__icons_group__item}>
-            <ShopCartIcon />
+                <p>Кошик</p>
+              </div>
 
-            <p>Кошик</p>
-          </div>
+              <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
+                <UserIcon />
 
-          <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
-            <UserIcon />
-
-            <p>Увійти</p>
-          </div>
-        </div>
+                <p>Увійти</p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
+
       {showAuthModal && (
         <Modal onClose={closeModal} title={modalState.title}>
           {modalState.showLogin && (

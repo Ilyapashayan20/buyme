@@ -1,19 +1,31 @@
 @import 'styles/vars';
+@import 'styles/colors';
 @import 'styles/typography';
 
 .wrapper {
   width: 100%;
-  padding: 24px;
-  background-color: #1a1a1a;
+  padding: 16px;
+  background-color: $black-100;
   height: 80px;
-  @extend %flex-align;
+  @extend %flex-center;
+
+  @media (max-width: $tablet-w) {
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    left: 0;
+  }
 
   &__container {
     gap: 32px;
     width: 100%;
     max-width: 1200px;
-    margin: 0 aut0;
+    margin: 0 auto;
     @extend %flex-center;
+
+    @media (max-width: $tablet-w) {
+      justify-content: space-between;
+    }
   }
 
   &__logo {
@@ -23,36 +35,12 @@
 
   &__catalog {
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: $opacity-2;
     gap: 12px;
     padding: 14px 24px;
-    color: #fff;
+    color: $white;
     @extend %secondary-1;
     @extend %flex-align;
-  }
-
-  &__search {
-    width: 100%;
-    max-width: 590px;
-    @extend %flex-align;
-
-    &__input {
-      width: 100%;
-      background-color: #fff;
-      padding-left: 16px;
-      border-radius: 8px 0 0 8px;
-      border: none;
-      height: 48px;
-      @extend %flex-align;
-    }
-
-    &__button {
-      padding: 12px;
-      border-radius: 0px 4px 4px 0px;
-      background-color: #ab0000;
-      max-height: 48px;
-      border: none;
-    }
   }
 
   &__icons_group {
@@ -60,31 +48,29 @@
     @extend %flex-align;
 
     &__item {
-      @extend %flex-column-center;
       gap: 8px;
-      color: #959595;
+      color: $black-400;
       text-align: center;
       cursor: pointer;
+      @extend %flex-column-center;
       @extend %secondary-1;
     }
   }
-
 }
-
 
 .modal__form {
   padding: 32px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   gap: 20px;
-  button{
+  @extend %flex-column;
+
+  button {
     width: 100%;
   }
 
   &__link {
     text-align: center;
-    color: #ab0000;
+    color: $red;
     @extend %micro-3, %flex-justify-center;
   }
 
@@ -93,48 +79,51 @@
     @extend %micro-2;
 
     b {
-      color: #ab0000;
+      color: $red;
     }
   }
 }
 
-.modal__login__confirm{
+.modal__login__confirm {
   min-width: 412px;
   padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  p{
-    font-weight:  400;
+
+  p {
+    font-weight: 400;
     max-width: 322px;
     margin: auto;
     text-align: center;
-    @extend %micro-3 ;
-    b{
+    @extend %micro-3;
+
+    b {
       font-weight: 700;
     }
   }
-  span{
+
+  span {
     font-weight: 700;
     font-size: 65px;
     line-height: 100%;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    color: #AB0000;
+    color: $red;
+    @extend %flex-justify-center;
   }
 
-  &__buttons{
-    display: flex;
-    justify-content: space-between;
+  &__buttons {
     gap: 10px;
-    button{
+    @extend %flex-justify-between;
+
+    button {
       padding: 16px 32px;
     }
-    &__btn2{
-      background: white;
-      color: #AB0000;
-      border: 2px solid #ab0000;
+
+    &__btn2 {
+      background: $white;
+      color: $red;
+      border: 2px solid $red;
     }
   }
 }

@@ -1,0 +1,32 @@
+.alice-carousel__dots {
+  position: relative;
+  background-color: rgba(149, 149, 149, 0.2);
+  padding: 4px 8px;
+  border-radius: 50px;
+  max-width: 120px;
+  margin: auto;
+  margin-top: -30px;
+  display: flex;
+  gap: 8px;
+
+  @media (max-width: 876px) {
+    margin-top: 8px;
+  }
+}
+
+.alice-carousel__dots-item:not(.__custom):not(:last-child) {
+  margin-right: 0;
+}
+
+.alice-carousel__dots-item:not(.__custom):hover,
+.alice-carousel__dots-item:not(.__custom).__active {
+  background: #ab0000;
+}
+
+.alice-carousel__dots-item:not(.__custom) {
+  background-color: #959595;
+  min-width: 6px;
+  min-height: 6px;
+  max-width: 6px;
+  max-height: 6px;
+}

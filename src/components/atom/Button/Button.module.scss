@@ -1,10 +1,17 @@
+@import 'styles/colors';
+@import 'styles/vars';
 @import 'styles/typography';
 
 .wrapper {
   width: max-content;
   padding: 16px 60px;
-  color: #fff;
-  @extend %secondary-1;
-  background-color: #ab0000;
+  color: $white;
+  background-color: $red;
   border-radius: 6px;
+  @extend %secondary-1;
+
+  @media (max-width: $tablet-w) {
+    width: 100%;
+    padding: 16px;
+  }
 }

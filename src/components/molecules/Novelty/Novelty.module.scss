@@ -1,12 +1,15 @@
 @import 'styles/vars';
 @import 'styles/mixins';
-@import 'styles/typography';
 
 .wrapper {
   width: 100%;
   @extend %flex-column-center;
   gap: 32px;
   padding: 120px 24px 0;
+
+  @media (max-width: $tablet-w) {
+    padding: 48px 15px 0;
+  }
 
   &__content {
     @include cardsWrapper();
