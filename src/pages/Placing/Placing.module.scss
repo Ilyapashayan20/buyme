@@ -1,0 +1,146 @@
+@import 'styles/vars';
+@import 'styles/typography';
+
+.wrapper {
+    width: 100%;
+    padding: 24px;
+    padding-bottom: 324px;
+    margin-top: 24px;
+    &__container {
+        margin-top: 48px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        &__title {
+            font-size: 41px;
+            line-height: 100%;
+            font-weight: 700;
+        }
+
+        &__basket {
+            margin-top: 32px;
+            width: 100%;
+            @extend %flex-justify-between;
+            gap: 40px;
+
+            &__products {
+                width: 100%;
+                max-width: 720px;
+                @extend %flex-column;
+
+                &__header {
+                    padding-bottom: 16px;
+                    margin-bottom: 16px;
+                    @extend %flex-justify-between, %micro-2;
+                }
+
+                &__product {
+                    display: flex;
+                    padding-bottom: 16px;
+                    gap: 24px;
+                    border-bottom: 1px solid #959595;
+
+                    &__info {
+                        padding: 11px 0px;
+                        gap: 12px;
+                        @extend %flex-column;
+
+                        &__title {
+                            font-weight: 500;
+                        }
+
+                        &__quantity {
+                            color: #959595;
+                            font-weight: 400;
+                        }
+
+                        &__price {
+                            font-weight: 700;
+                        }
+                    }
+                }
+                &__stepper{
+                    margin-top: 32px;
+                    padding: 0 55px;
+                    display: flex;
+                    gap: 8px;
+                    
+                    &__step__1{
+                        max-width: 200px;
+                        width: 100%;
+                        text-align: center;
+                        cursor: pointer;
+                        font-weight: 500;
+                        color: #959595;
+                        &__block{
+                            background: #9595951A;
+                            padding: 12px 0px;
+                            border-radius: 50px;
+                            
+                        }
+                        &__block__active{
+                            background-color: #ab0000;
+                            color: white;
+                        }
+                        &__arrow{
+                        }
+                    }
+                }
+                &__stepper__container{
+                    margin-top: 48px;
+                    &__step_1{
+                        &__title{
+                            color:#4C5563;
+                            font-weight: 400;
+                            font-size: 10px;
+                            margin-bottom: 24px;
+                        }
+                        &__input_block{
+                            position: relative;
+                            width: 100%;
+                            margin-bottom: 24px;
+                            input{
+                                outline: none;
+                                border-radius: 8px;
+                                border:1px solid #95959580;
+                                padding: 16px;
+                                width: 100%;
+                                &::placeholder{
+                                    color:#0000000D
+                                }
+                            }
+                            label{
+                                top: -5px;
+                                position: absolute;
+                                background: white;
+                                padding: 0px 6px;
+                                left: 16px;
+                                font-size: 10px;
+                                color: #95959580;
+
+                            }
+                            button{
+                                position: absolute;
+                                right: 16px;
+                                top: 16px;
+                            }
+                        }
+                        &__btn{
+                            margin: auto;
+                            margin-top: 24px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 345px;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    
+}
+
+
