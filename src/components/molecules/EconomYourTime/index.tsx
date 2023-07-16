@@ -1,7 +1,9 @@
 import type { FC } from 'react'
 
-import styles from './EconomYourTime.module.scss'
 import { economData } from './utils'
+import { useResponsive } from 'hooks'
+
+import styles from './EconomYourTime.module.scss'
 
 const EconomYourTime: FC = () => {
   const renderItems = economData.map((element, index) => (
@@ -11,6 +13,8 @@ const EconomYourTime: FC = () => {
       <p className={styles.wrapper__footer__item__subtitle}>{element.subtitle}</p>
     </div>
   ))
+
+  const { isTablet } = useResponsive()
 
   return (
     <div className={styles.wrapper}>
@@ -29,12 +33,20 @@ const EconomYourTime: FC = () => {
           </p>
         </div>
 
-        <div className={styles.wrapper__container__image}>
-          <img src='images/economTime/phones.png' alt='phones' width='580px' height='480px' />
-        </div>
+        {!isTablet && (
+          <div className={styles.wrapper__container__image}>
+            <img src='images/economTime/phones.png' alt='phones' width='580px' height='480px' />
+          </div>
+        )}
       </div>
 
       <div className={styles.wrapper__footer}>{renderItems}</div>
+
+      {isTablet && (
+        <div className={styles.wrapper__container__image}>
+          <img src='images/economTime/phones.png' alt='phones' width='100%' height='100%' />
+        </div>
+      )}
     </div>
   )
 }

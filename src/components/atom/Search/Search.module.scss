@@ -1,0 +1,32 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  max-width: 590px;
+  @extend %flex-align;
+
+  @media (max-width: $tablet-w) {
+    padding: 16px;
+    max-width: unset;
+  }
+
+  &__input {
+    width: 100%;
+    background-color: $white;
+    padding-left: 16px;
+    border-radius: 8px 0 0 8px;
+    border: none;
+    height: 48px;
+    @extend %flex-align;
+  }
+
+  &__button {
+    padding: 12px;
+    border-radius: 0px 4px 4px 0px;
+    background-color: $red;
+    max-height: 48px;
+    border: none;
+  }
+}

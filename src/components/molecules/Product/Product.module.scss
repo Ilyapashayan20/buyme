@@ -1,17 +1,27 @@
 @import 'styles/vars';
 @import 'styles/colors';
+@import 'styles/mixins';
 @import 'styles/typography';
 
 .wrapper {
   width: 100%;
   padding: 120px 24px 0;
-
   gap: 40px;
   @extend %flex-center;
+
+  @media (max-width: $tablet-w) {
+    padding: 48px 15px;
+    flex-direction: column;
+  }
 
   &__image img {
     border-radius: 16px;
     object-fit: contain;
+
+    @media (max-width: $tablet-w) {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__description {
@@ -20,6 +30,11 @@
     max-width: 464px;
     @extend %flex-column;
 
+    @media (max-width: $tablet-w) {
+      max-width: unset;
+      gap: 12px;
+    }
+
     &__title {
       color: $black-100;
       @extend %heading-3;
@@ -27,6 +42,12 @@
 
     &__stars {
       margin-top: -20px;
+
+      @media (max-width: $tablet-w) {
+        margin-top: 0;
+
+        @include svgFill($red, 24px);
+      }
     }
 
     &__price {
@@ -43,6 +64,10 @@
       width: 100%;
       gap: 12px;
       @extend %flex-justify-between;
+
+      @media (max-width: $tablet-w) {
+        flex-wrap: wrap;
+      }
 
       > div {
         gap: 12px;

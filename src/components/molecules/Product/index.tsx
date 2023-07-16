@@ -1,62 +1,61 @@
 import type { FC } from 'react'
 
-import styles from './Product.module.scss'
 import { CheckedIcon } from 'assets'
-import { Button, RatingStars } from 'components/atom'
+import { Button, RatingStars } from 'components'
 
-const Product: FC = () => {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.wrapper__image}>
-        <img width='580px' height='624px' alt='soldier' src='images/soldierSecond.png' />
-      </div>
+import styles from './Product.module.scss'
 
-      <div className={styles.wrapper__description}>
-        <h3 className={styles.wrapper__description__title}>Тактичний костюм idoger G3</h3>
+const Product: FC = () => (
+  <div className={styles.wrapper}>
+    <div className={styles.wrapper__image}>
+      <img width='580px' height='624px' alt='soldier' src='images/soldierSecond.png' />
+    </div>
 
-        <RatingStars rate={4} className={styles.wrapper__description__stars} />
+    <div className={styles.wrapper__description}>
+      <h3 className={styles.wrapper__description__title}>Тактичний костюм idoger G3</h3>
 
-        <h4 className={styles.wrapper__description__price}>799 ₴ / дроп ціна</h4>
+      <RatingStars rate={4} className={styles.wrapper__description__stars} />
 
-        <p className={styles.wrapper__description__text}>
-          Костюм складається з сорочки Ubacs та штанів. До комплекту також входять запатентовані знімні наколінники
-          та налокітники AirFlex Combat
-        </p>
+      <h4 className={styles.wrapper__description__price}>799 ₴ / дроп ціна</h4>
 
-        <div className={styles.wrapper__description__about}>
-          <div>
-            <div className={styles.wrapper__description__about__item}>
-              <CheckedIcon />
+      <p className={styles.wrapper__description__text}>
+        Костюм складається з сорочки Ubacs та штанів. До комплекту також входять запатентовані знімні наколінники
+        та налокітники AirFlex Combat
+      </p>
 
-              <p className={styles.wrapper__description__about__item__text}>Бавовняна основа</p>
-            </div>
+      <div className={styles.wrapper__description__about}>
+        <div>
+          <div className={styles.wrapper__description__about__item}>
+            <CheckedIcon />
 
-            <div className={styles.wrapper__description__about__item}>
-              <CheckedIcon />
-
-              <p className={styles.wrapper__description__about__item__text}>Водостійка тканина</p>
-            </div>
+            <p className={styles.wrapper__description__about__item__text}>Бавовняна основа</p>
           </div>
 
-          <div>
-            <div className={styles.wrapper__description__about__item}>
-              <CheckedIcon />
+          <div className={styles.wrapper__description__about__item}>
+            <CheckedIcon />
 
-              <p className={styles.wrapper__description__about__item__text}>Продуманий крій</p>
-            </div>
-
-            <div className={styles.wrapper__description__about__item}>
-              <CheckedIcon />
-
-              <p className={styles.wrapper__description__about__item__text}>Перевірена якість</p>
-            </div>
+            <p className={styles.wrapper__description__about__item__text}>Водостійка тканина</p>
           </div>
         </div>
 
-        <Button className={styles.wrapper__description__button}>Купити</Button>
+        <div>
+          <div className={styles.wrapper__description__about__item}>
+            <CheckedIcon />
+
+            <p className={styles.wrapper__description__about__item__text}>Продуманий крій</p>
+          </div>
+
+          <div className={styles.wrapper__description__about__item}>
+            <CheckedIcon />
+
+            <p className={styles.wrapper__description__about__item__text}>Перевірена якість</p>
+          </div>
+        </div>
       </div>
+
+      <Button className={styles.wrapper__description__button}>Купити</Button>
     </div>
-  )
-}
+  </div>
+)
 
 export default Product

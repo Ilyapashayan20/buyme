@@ -1,9 +1,8 @@
 import type { FC } from 'react'
 import styles from './ProductBasket.module.scss'
-import {  HeartIcon1, MinusIcon, PlusIcon } from 'assets'
+import { HeartIcon1, MinusIcon, PlusIcon } from 'assets'
 
 const ProductBasket: FC<any> = ({ product }) => {
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper__container}>
@@ -35,18 +34,22 @@ const ProductBasket: FC<any> = ({ product }) => {
           </div>
           <div className={styles.wrapper__container__info__quantity}>
             <div className={styles.wrapper__container__info__quantity__buttons}>
-                <button><MinusIcon /></button>
-                <div className={styles.wrapper__container__info__quantity__buttons__count}>3 шт.</div>
-                <button><PlusIcon /></button>
+              <button>
+                <MinusIcon />
+              </button>
+              <div className={styles.wrapper__container__info__quantity__buttons__count}>3 шт.</div>
+              <button>
+                <PlusIcon />
+              </button>
             </div>
             <HeartIcon1 />
           </div>
         </div>
-        <div style={{marginLeft: "auto"}}>
-            <p style={{fontWeight: 700, color: "#ab0000"}}>{product.price * 3} грн</p>
+        <div style={{ marginLeft: 'auto' }}>
+          <p style={{ fontWeight: 700, color: '#ab0000' }}>{product.price * 3} грн</p>
         </div>
       </div>
-      <h3 style={{color:'#AB0000', fontWeight:400}}>Видалити</h3>
+      <h3 style={{ color: '#AB0000', fontWeight: 400 }}>Видалити</h3>
     </div>
   )
 }

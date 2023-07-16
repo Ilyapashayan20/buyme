@@ -10,6 +10,10 @@
   gap: 32px;
   @extend %flex-column;
 
+  @media (max-width: $tablet-w) {
+    padding: 48px 15px 0;
+  }
+
   &__container {
     gap: 40px;
     @extend %flex-align;
@@ -25,6 +29,11 @@
       &__title {
         color: $black-200;
         @extend %heading-3;
+
+        @media (max-width: $tablet-w) {
+          font-size: 26px;
+          font-weight: 700;
+        }
       }
 
       &__subtitle {
@@ -38,6 +47,13 @@
     gap: 40px;
     @extend %flex-align;
 
+    @media (max-width: $tablet-w) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 24px;
+      column-gap: 9px;
+    }
+
     &__item {
       @extend %flex-column;
       width: 100%;
@@ -46,6 +62,11 @@
       &__title {
         color: $red;
         @extend %heading-2;
+
+        @media (max-width: $tablet-w) {
+          font-size: 41px;
+          font-weight: 600;
+        }
       }
 
       &__subtitle {
@@ -54,6 +75,11 @@
         color: $black-300;
         width: 100%;
         @extend %micro-3;
+
+        @media (max-width: $tablet-w) {
+          font-size: 12px;
+          font-weight: 400;
+        }
       }
     }
   }

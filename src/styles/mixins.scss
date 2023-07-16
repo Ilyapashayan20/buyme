@@ -59,4 +59,12 @@
   @media (max-width: $tablet-l) {
     grid-template-columns: repeat(2, 285px);
   }
+
+  @media (max-width: $tablet-w) {
+    grid-template-columns: repeat(3, 168px);
+  }
+
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(2, 168px);
+  }
 }
