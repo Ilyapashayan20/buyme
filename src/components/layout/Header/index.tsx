@@ -7,6 +7,7 @@ import { BurgerIcon, HeartIcon, ListIcon, LogoIcon, ShopCartIcon, UserIcon } fro
 import type { TModalState } from './type'
 import styles from './Header.module.scss'
 import { useResponsive } from 'hooks'
+import { Link } from 'react-router-dom'
 
 const Header: FC = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
@@ -79,11 +80,11 @@ const Header: FC = () => {
                 <p>Бажане</p>
               </div>
 
-              <div className={styles.wrapper__icons_group__item}>
+              <Link to='/basket' className={styles.wrapper__icons_group__item}>
                 <ShopCartIcon />
 
                 <p>Кошик</p>
-              </div>
+              </Link>
 
               <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
                 <UserIcon />
