@@ -5,7 +5,8 @@ import { ERoutePaths, TRoutePageType } from './types'
 const Home = lazy(() => import('pages/Home'))
 const Login = lazy(() => import('pages/Auth/Login'))
 const Signup = lazy(() => import('pages/Auth/Signup'))
-const Basket = lazy(()=> import('pages/Basket'))
+const Basket = lazy(() => import('pages/Basket'))
+const Saved = lazy(() => import('pages/Saved'))
 
 const routesList: TRoutePageType[] = [
   {
@@ -28,7 +29,11 @@ const routesList: TRoutePageType[] = [
     path: ERoutePaths.Basket,
     title: 'Basket',
   },
-  
+  {
+    element: Saved,
+    path: ERoutePaths.Saved,
+    title: 'Saved items',
+  },
 ]
 
 export default routesList

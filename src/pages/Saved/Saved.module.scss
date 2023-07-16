@@ -1,0 +1,32 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  gap: 12px;
+  margin: 48px auto 123px;
+  @extend %flex-column;
+
+  &__head {
+    width: 100%;
+    @extend %flex-justify-between;
+
+    &__title {
+      @extend %heading-3;
+      color: $black;
+    }
+
+    &__subtitle {
+      color: $red;
+      @extend %secondary-3;
+    }
+  }
+
+  &__items {
+    margin-top: 12px;
+    @include cardsWrapper();
+  }
+}

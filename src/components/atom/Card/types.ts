@@ -6,4 +6,5 @@ export type TCardProps = {
   price: number
   promotion?: number
   oldPrice?: number
+  isCheck?: boolean
 }

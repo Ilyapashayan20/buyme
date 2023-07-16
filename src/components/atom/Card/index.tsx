@@ -1,14 +1,14 @@
 import { type FC, useState, useCallback } from 'react'
 import classNames from 'classnames'
 
-import { HeartIcon } from 'assets'
+import { CheckedIcon, HeartIcon } from 'assets'
 import { Button, RatingStars } from 'components'
 
 import type { TCardProps } from './types'
 import styles from './Card.module.scss'
 import { useResponsive } from 'hooks'
 
-const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, oldPrice }) => {
+const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, oldPrice, isCheck = false }) => {
   const { isTablet } = useResponsive()
 
   const [isLiked, setLiked] = useState<boolean>(false)
@@ -21,12 +21,16 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
     <div className={styles.wrapper}>
       <img className={styles.wrapper__image} src={image} alt={title} width='100%' height='auto' />
 
-      {!isTablet && (
-        <HeartIcon
-          role='button'
-          onClick={onLikeClickCallback}
-          className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
-        />
+      {isCheck ? (
+        !isTablet && (
+          <HeartIcon
+            role='button'
+            onClick={onLikeClickCallback}
+            className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
+          />
+        )
+      ) : (
+        <CheckedIcon className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })} />
       )}
 
       <div className={styles.wrapper__description}>

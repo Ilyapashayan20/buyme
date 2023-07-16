@@ -21,7 +21,7 @@
     opacity: 0;
     overflow: hidden;
     transition: opacity 0.6s;
-    padding: 0 15px 15px;
+    padding: 0;
     max-height: 0;
     @extend %flex-justify-center;
   }
@@ -53,6 +53,7 @@
     &__droped {
       max-height: unset;
       opacity: 1;
+      padding: 0 15px 15px;
     }
 
     &__right {
