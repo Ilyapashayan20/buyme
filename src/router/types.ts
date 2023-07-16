@@ -12,6 +12,7 @@ export enum ERoutePaths {
   Login = '/login',
   Signup = '/signup',
   Basket = '/basket',
+  Placing = '/placing',
   Error = '*',
   Lesson = '/course/:id/lessons',
   Graduate = '/graduate',
