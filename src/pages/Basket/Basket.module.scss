@@ -29,6 +29,9 @@
                 @extend %flex-justify-between,%micro-2;
             }
            }
+           @media (max-width: $tablet-l) {
+            flex-direction: column;
+           }
         }
     }
 }

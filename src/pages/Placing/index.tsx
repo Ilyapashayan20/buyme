@@ -3,9 +3,11 @@ import styles from './Placing.module.scss'
 import { Button, ToOrder } from 'components'
 import classNames from 'classnames'
 import { ArrowBottomIcon } from 'assets'
+import { useResponsive } from 'hooks'
 
 const Placing: FC = () => {
   const [activeStep, setActiveStep] = useState(1)
+  const { isMobile } = useResponsive()
 
   const handleStepClick = (index: number) => {
     setActiveStep(index)
@@ -22,7 +24,11 @@ const Placing: FC = () => {
             </header>
             <div className={styles.wrapper__container__basket__products__product}>
               <div>
-                <img width='143px' height='158px' alt='soldier' src='images/soldierSecond.png' />
+                {!isMobile ? (
+                  <img width='143px' height='158px' alt='soldier' src='images/soldierSecond.png' />
+                ) : (
+                  <img width='64px' height='64px' alt='soldier' src='images/soldierSecond.png' />
+                )}
               </div>
               <div className={styles.wrapper__container__basket__products__product__info}>
                 <p className={styles.wrapper__container__basket__products__product__info__title}>
@@ -149,7 +155,7 @@ const Placing: FC = () => {
               )}
             </div>
           </div>
-          <ToOrder />
+          {!isMobile && <ToOrder />}
         </div>
       </div>
     </section>
