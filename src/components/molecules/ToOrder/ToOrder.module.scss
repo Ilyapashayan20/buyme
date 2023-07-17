@@ -30,11 +30,14 @@
         &__footer {
             padding-top: 16px;
             border-top: 1px solid #95959533;
+
             font-size: 16px;
 
             p {
                 font-size: 16px;
                 font-weight: 500;
+
+
             }
 
             span {
@@ -43,13 +46,25 @@
                 font-weight: 700;
                 color: #AB0000;
             }
+
+            @media (max-width: $tablet-l) {
+                border: none;
+            }
         }
     }
 
     &__buttons {
-        &__btn_1{
-            width: 100%;
+        a {
+            @media (max-width: $tablet-l) {
+                width: 100%;
+            }
         }
+
+        &__btn_1 {
+            width: 100%;
+
+        }
+
         &__btn_2 {
             margin-top: 10px;
             width: 100%;
@@ -57,6 +72,12 @@
             background: transparent;
             border: 1px solid #AB0000;
         }
+    }
+
+    @media (max-width: $tablet-l) {
+        background: white;
+        width: 100%;
+        padding: 0;
     }
 }
 
@@ -67,41 +88,40 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-  
+
     p {
-      font-weight: 400;
-      margin: auto;
-      text-align: center;
-      @extend %micro-3;
-  
-      b {
-        font-weight: 700;
-      }
+        font-weight: 400;
+        margin: auto;
+        text-align: center;
+        @extend %micro-3;
+
+        b {
+            font-weight: 700;
+        }
     }
-  
+
     span {
-      font-weight: 700;
-      font-size: 65px;
-      line-height: 100%;
-      text-align: center;
-      color: $red;
-      @extend %flex-justify-center;
+        font-weight: 700;
+        font-size: 65px;
+        line-height: 100%;
+        text-align: center;
+        color: $red;
+        @extend %flex-justify-center;
     }
-  
+
     &__buttons {
-      gap: 10px;
-      @extend %flex-justify-between;
-  
-      button {
-        padding: 16px 32px;
-      }
-  
-      &__btn1 {
-        background: $red;
-        color: $white;
-        border: 2px solid $red;
-        width: 100%;
-      }
+        gap: 10px;
+        @extend %flex-justify-between;
+
+        button {
+            padding: 16px 32px;
+        }
+
+        &__btn1 {
+            background: $red;
+            color: $white;
+            border: 2px solid $red;
+            width: 100%;
+        }
     }
-  }
-  
+}
