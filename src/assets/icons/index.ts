@@ -21,3 +21,6 @@ export { ReactComponent as MinusIcon } from './minus.svg'
 export { ReactComponent as PlusIcon } from './plus.svg'
 export { ReactComponent as HeartIcon1 } from './heart(1).svg'
 export { ReactComponent as ArrowRIghtIcon } from './arrowRight.svg'
+export {ReactComponent as ArrowBottomIcon } from './caret-left.svg'
+export {ReactComponent as PaintIcon } from './paint.svg'
+

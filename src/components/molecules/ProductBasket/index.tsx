@@ -1,13 +1,17 @@
 import type { FC } from 'react'
 import styles from './ProductBasket.module.scss'
 import { HeartIcon1, MinusIcon, PlusIcon } from 'assets'
+import { useResponsive } from 'hooks'
 
 const ProductBasket: FC<any> = ({ product }) => {
+  const { isMobile } = useResponsive()
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper__container}>
         <div className={styles.wrapper__container__image}>
           <img width='143px' height='158px' alt='soldier' src='images/soldierSecond.png' />
+          {isMobile && <h3 style={{ color: '#AB0000', fontWeight: 400 }}>Видалити</h3>}
         </div>
         <div className={styles.wrapper__container__info}>
           <h1 className={styles.wrapper__container__info__title}>
@@ -25,11 +29,15 @@ const ProductBasket: FC<any> = ({ product }) => {
               <span>Розмір:</span>
               <p>{product.size}</p>
             </div>
-            {product.priceType && (
-              <div className={styles.wrapper__container__info__main__item}>
-                <span>Тип ціни:</span>
-                <p>{product.priceType}</p>
-              </div>
+            {!isMobile && (
+              <>
+                {product.priceType && (
+                  <div className={styles.wrapper__container__info__main__item}>
+                    <span>Тип ціни:</span>
+                    <p>{product.priceType}</p>
+                  </div>
+                )}
+              </>
             )}
           </div>
           <div className={styles.wrapper__container__info__quantity}>
@@ -44,12 +52,26 @@ const ProductBasket: FC<any> = ({ product }) => {
             </div>
             <HeartIcon1 />
           </div>
+          {isMobile && (
+              <>
+                {product.priceType && (
+                  <div className={styles.wrapper__container__info__main__item}>
+                    <span>Всього:</span>
+                    <p>{product.price} грн</p>
+                  </div>
+                )}
+              </>
+            )}
         </div>
         <div style={{ marginLeft: 'auto' }}>
-          <p style={{ fontWeight: 700, color: '#ab0000' }}>{product.price * 3} грн</p>
+          {!isMobile && (
+            <p className={styles.wrapper__container__price} style={{ fontWeight: 700, color: '#ab0000' }}>
+              {product.price * 3} грн
+            </p>
+          )}
         </div>
       </div>
-      <h3 style={{ color: '#AB0000', fontWeight: 400 }}>Видалити</h3>
+      {!isMobile && <h3 style={{ color: '#AB0000', fontWeight: 400 }}>Видалити</h3>}
     </div>
   )
 }

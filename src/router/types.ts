@@ -13,5 +13,6 @@ export enum ERoutePaths {
   Signup = '/signup',
   Basket = '/basket',
   Saved = '/saved',
+  Placing = '/placing',
   Error = '*',
 }
