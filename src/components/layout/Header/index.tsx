@@ -1,13 +1,15 @@
 import { type FC, useState } from 'react'
+import classNames from 'classnames'
 
+import { useResponsive } from 'hooks'
 import InputAuth from 'components/atom/Input/Auth'
+import { Link, NavLink } from 'react-router-dom'
 import { Button, Checkbox, Menu, Modal, Search } from 'components'
 import { BurgerIcon, HeartIcon, LogoIcon, ShopCartIcon, UserIcon } from 'assets'
 
 import type { TModalState } from './type'
 import styles from './Header.module.scss'
-import { useResponsive } from 'hooks'
-import { Link } from 'react-router-dom'
+import { ERoutePaths } from 'router/types'
 
 const Header: FC = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
@@ -72,17 +74,31 @@ const Header: FC = () => {
             <Search />
 
             <div className={styles.wrapper__icons_group}>
-              <div className={styles.wrapper__icons_group__item}>
+              <NavLink
+                to={ERoutePaths.Saved}
+                className={({ isActive }) =>
+                  isActive
+                    ? classNames(styles.wrapper__icons_group__item, styles.wrapper__icons_group__item__active)
+                    : styles.wrapper__icons_group__item
+                }
+              >
                 <HeartIcon />
 
                 <p>Бажане</p>
-              </div>
+              </NavLink>
 
-              <Link to='/basket' className={styles.wrapper__icons_group__item}>
+              <NavLink
+                to={ERoutePaths.Basket}
+                className={({ isActive }) =>
+                  isActive
+                    ? classNames(styles.wrapper__icons_group__item, styles.wrapper__icons_group__item__active)
+                    : styles.wrapper__icons_group__item
+                }
+              >
                 <ShopCartIcon />
 
                 <p>Кошик</p>
-              </Link>
+              </NavLink>
 
               <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
                 <UserIcon />
