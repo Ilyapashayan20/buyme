@@ -1,0 +1,34 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/typography';
+
+.wrapper {
+  gap: 48px;
+  background: $white;
+  width: 100%;
+  padding: 16px 0 30px;
+  box-shadow: 0px 4px 20px 0px rgba(9, 21, 36, 0.1);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  @extend %flex-center;
+
+  &__item {
+    gap: 8px;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    color: $black-300;
+    text-align: center;
+    transition: all 0.6s;
+    @extend %micro-1;
+    @extend %flex-column-center;
+    @include svgFill($black-300, 20px);
+
+    &__active {
+      color: $red;
+      @include svgFill($red, 20px);
+    }
+  }
+}

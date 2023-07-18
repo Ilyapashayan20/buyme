@@ -1,11 +1,14 @@
 import { type FC } from 'react'
 
 import { RoutesWrapper } from 'router'
-import { Footer, Header } from 'components'
+import { Footer, Header, MobileNavBar } from 'components'
 
 import styles from './PageLayout.module.scss'
+import { useResponsive } from 'hooks'
 
 const PageLayout: FC = () => {
+  const { isTablet } = useResponsive()
+
   return (
     <main className={styles.wrapper}>
       <Header />
@@ -15,6 +18,8 @@ const PageLayout: FC = () => {
       </div>
 
       <Footer />
+
+      {isTablet && <MobileNavBar />}
     </main>
   )
 }
