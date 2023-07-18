@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
-import { Footer, Header } from 'components'
 import { RoutesWrapper } from 'router'
+import { Footer, Header } from 'components'
 
 import styles from './PageLayout.module.scss'
 

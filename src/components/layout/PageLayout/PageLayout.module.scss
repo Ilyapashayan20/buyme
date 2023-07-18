@@ -3,6 +3,10 @@
 .wrapper {
   width: 100%;
 
+  &__chat {
+    border-radius: 180px;
+  }
+
   @media (max-width: $tablet-w) {
     margin-top: 80px;
   }

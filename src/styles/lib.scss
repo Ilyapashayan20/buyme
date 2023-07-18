@@ -30,3 +30,45 @@
   max-width: 6px;
   max-height: 6px;
 }
+
+.alice-carousel__prev-btn,
+.alice-carousel__next-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: #959595;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    fill: #fff;
+  }
+
+  &:hover {
+    background-color: #ab0000;
+  }
+}
+
+.alice-carousel__prev-btn {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.alice-carousel__next-btn {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.alice-carousel__prev-btn-item,
+.alice-carousel__next-btn-item {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}

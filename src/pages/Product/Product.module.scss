@@ -129,6 +129,12 @@
       max-width: 580px;
       border-radius: 8px;
 
+      &__bottom {
+        display: flex;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
       img {
         border-radius: 8px;
       }
@@ -257,5 +263,23 @@
     &__disabled {
       color: rgba(149, 149, 149, 0.5);
     }
+  }
+}
+
+.slider__bottom {
+  border-radius: 6px;
+  border: 1px solid #959595;
+  filter: grayscale(0.3);
+  width: 76px;
+  height: 76px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &__active,
+  &:hover {
+    border: 1px solid #1a1a1a;
+    filter: grayscale(0);
+
+    background: lightgray 50% / cover no-repeat;
   }
 }
