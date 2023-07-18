@@ -15,5 +15,6 @@ export enum ERoutePaths {
   Saved = '/saved',
   Placing = '/placing',
   Product = '/product',
+  CategoriesPage = '/categories',
   Error = '*',
 }
