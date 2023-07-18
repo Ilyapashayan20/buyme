@@ -1,10 +1,10 @@
 import type { FC } from 'react'
+import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css'
 
 import { LinkIcon, PhoneSecondaryIcon } from 'assets'
 
 import styles from './Slider.module.scss'
-import AliceCarousel from 'react-alice-carousel'
-import 'react-alice-carousel/lib/alice-carousel.css'
 
 const Slider: FC = () => {
   const item = (

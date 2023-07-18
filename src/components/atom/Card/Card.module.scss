@@ -20,6 +20,13 @@
     scale: 1.02;
   }
 
+  &__check {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+  }
+
   &__like {
     position: absolute;
     right: 16px;
@@ -28,18 +35,6 @@
 
     @media (max-width: $tablet-w) {
       position: static;
-    }
-
-    path {
-      fill: $red;
-    }
-
-    &:hover {
-      fill: $red;
-    }
-
-    &__active {
-      fill: $red;
     }
   }
 

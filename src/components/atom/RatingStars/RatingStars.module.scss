@@ -5,7 +5,49 @@
   gap: 6px;
   @extend %flex-align;
 
+  g {
+    stroke: $yellow;
+    fill: none;
+  }
+
+  path {
+    stroke: $yellow;
+    fill: none;
+  }
+
   &__active {
-    fill: $yellow;
+    g {
+      stroke: $yellow;
+      fill: $yellow;
+    }
+
+    path {
+      stroke: $yellow;
+      fill: $yellow;
+    }
+  }
+
+  &__red {
+    g {
+      stroke: $red;
+      fill: none;
+    }
+
+    path {
+      stroke: $red;
+      fill: none;
+    }
+
+    &__active {
+      g {
+        stroke: $red;
+        fill: $red;
+      }
+
+      path {
+        stroke: $red;
+        fill: $red;
+      }
+    }
   }
 }

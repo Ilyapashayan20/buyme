@@ -1,7 +1,6 @@
 import { type FC, useState, useCallback } from 'react'
-import classNames from 'classnames'
 
-import { CheckedIcon, HeartIcon } from 'assets'
+import { CheckedIcon, HeartIcon, HeartIcon1, NotCheckedIcon } from 'assets'
 import { Button, RatingStars } from 'components'
 
 import type { TCardProps } from './types'
@@ -12,26 +11,33 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
   const { isTablet } = useResponsive()
 
   const [isLiked, setLiked] = useState<boolean>(false)
+  const [isChecked, setIsChecked] = useState<boolean>(false)
 
   const onLikeClickCallback = useCallback(() => {
     setLiked(!isLiked)
   }, [isLiked])
 
+  const onCheckClickCallback = useCallback(() => {
+    setIsChecked(!isChecked)
+  }, [isChecked])
+
+  const renderHeartIcon = isLiked ? (
+    <HeartIcon role='button' onClick={onLikeClickCallback} className={styles.wrapper__like} />
+  ) : (
+    <HeartIcon1 role='button' onClick={onLikeClickCallback} className={styles.wrapper__like} />
+  )
+
+  const renderCheckedIcon = isChecked ? (
+    <CheckedIcon role='button' onClick={onCheckClickCallback} className={styles.wrapper__check} />
+  ) : (
+    <NotCheckedIcon role='button' onClick={onCheckClickCallback} className={styles.wrapper__check} />
+  )
+
   return (
     <div className={styles.wrapper}>
       <img className={styles.wrapper__image} src={image} alt={title} width='100%' height='auto' />
 
-      {isCheck ? (
-        !isTablet && (
-          <HeartIcon
-            role='button'
-            onClick={onLikeClickCallback}
-            className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
-          />
-        )
-      ) : (
-        <CheckedIcon className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })} />
-      )}
+      {!isCheck ? !isTablet && renderHeartIcon : renderCheckedIcon}
 
       <div className={styles.wrapper__description}>
         {!!promotion ? (
@@ -60,11 +66,7 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
           <div className={styles.wrapper__buy}>
             <Button className={styles.wrapper__buy__button}>Купити</Button>
 
-            <HeartIcon
-              role='button'
-              onClick={onLikeClickCallback}
-              className={classNames(styles.wrapper__like, { [styles.wrapper__like__active]: isLiked })}
-            />
+            {renderHeartIcon}
           </div>
         )}
       </div>

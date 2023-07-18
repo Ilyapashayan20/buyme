@@ -1,5 +1,6 @@
-@import 'styles/colors';
 @import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
 @import 'styles/typography';
 
 .wrapper {
@@ -8,7 +9,17 @@
   color: $white;
   background-color: $red;
   border-radius: 6px;
+  gap: 10px;
+  @extend %flex-align;
   @extend %secondary-1;
+  @include svgFill($white);
+
+  &__transparent {
+    color: $red;
+    border: 1px solid $red;
+    background-color: transparent;
+    @include svgFill($red);
+  }
 
   @media (max-width: $tablet-w) {
     width: 100%;

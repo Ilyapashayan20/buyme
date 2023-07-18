@@ -14,5 +14,6 @@ export enum ERoutePaths {
   Basket = '/basket',
   Saved = '/saved',
   Placing = '/placing',
+  Product = '/product',
   Error = '*',
 }

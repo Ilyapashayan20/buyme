@@ -3,9 +3,9 @@ import type { FC } from 'react'
 import { CheckedIcon } from 'assets'
 import { Button, RatingStars } from 'components'
 
-import styles from './Product.module.scss'
+import styles from './ProductItem.module.scss'
 
-const Product: FC = () => (
+const ProductItem: FC = () => (
   <div className={styles.wrapper}>
     <div className={styles.wrapper__image}>
       <img width='580px' height='624px' alt='soldier' src='images/soldierSecond.png' />
@@ -14,7 +14,7 @@ const Product: FC = () => (
     <div className={styles.wrapper__description}>
       <h3 className={styles.wrapper__description__title}>Тактичний костюм idoger G3</h3>
 
-      <RatingStars rate={4} className={styles.wrapper__description__stars} />
+      <RatingStars rate={4} isRed className={styles.wrapper__description__stars} />
 
       <h4 className={styles.wrapper__description__price}>799 ₴ / дроп ціна</h4>
 
@@ -58,4 +58,4 @@ const Product: FC = () => (
   </div>
 )
 
-export default Product
+export default ProductItem
