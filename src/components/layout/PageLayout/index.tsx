@@ -10,7 +10,9 @@ const PageLayout: FC = () => {
     <main className={styles.wrapper}>
       <Header />
 
-      <RoutesWrapper />
+      <div className={styles.wrapper__container}>
+        <RoutesWrapper />
+      </div>
 
       <Footer />
     </main>

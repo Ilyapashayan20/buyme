@@ -1,6 +1,6 @@
 export { default as Ad } from './Ad'
 export { default as Novelty } from './Novelty'
-export { default as Product } from './Product'
+export { default as ProductItem } from './ProductItem'
 export { default as HelmetLayout } from './Helmet'
 export { default as Promotions } from './Promotions'
 export { default as Categories } from './Categories'

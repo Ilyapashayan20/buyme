@@ -8,6 +8,7 @@ const Signup = lazy(() => import('pages/Auth/Signup'))
 const Basket = lazy(() => import('pages/Basket'))
 const Saved = lazy(() => import('pages/Saved'))
 const Placing = lazy(() => import('pages/Placing'))
+const Product = lazy(() => import('pages/Product'))
 
 const routesList: TRoutePageType[] = [
   {
@@ -39,6 +40,11 @@ const routesList: TRoutePageType[] = [
     element: Saved,
     path: ERoutePaths.Saved,
     title: 'Saved items',
+  },
+  {
+    element: Product,
+    path: ERoutePaths.Product,
+    title: 'Product',
   },
 ]
 

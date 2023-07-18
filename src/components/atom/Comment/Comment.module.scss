@@ -1,0 +1,47 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/typography';
+
+.wrapper {
+  border-radius: 8px;
+  background: rgba(149, 149, 149, 0.1);
+  padding: 16px;
+  min-width: 345px;
+  min-height: 128px;
+
+  &__head {
+    width: 100%;
+    @extend %flex-justify-between;
+
+    &__title {
+      color: $black-600;
+      @extend %secondary-3;
+
+      @media (max-width: $tablet) {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+      }
+    }
+
+    &__date {
+      color: $black-300;
+      @extend %micro-5;
+
+      @media (max-width: $tablet) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__text {
+    color: $black-300;
+    padding-top: 12px;
+    @extend %secondary-1;
+
+    @media (max-width: $tablet) {
+      font-size: 14px;
+    }
+  }
+}

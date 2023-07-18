@@ -1,0 +1,261 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  gap: 24px;
+  padding: 48px 15px 15px;
+  @extend %flex-column;
+
+  @media (max-width: $tablet) {
+    padding: 24px 15px 15px;
+  }
+
+  &__routes {
+    color: $black-300;
+    @extend %secondary-1;
+
+    @media (max-width: $tablet) {
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    &__last {
+      color: $black-100;
+      text-decoration: underline;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+
+    > button {
+      width: 100%;
+      @extend %flex-center;
+    }
+
+    &__bottom {
+      width: 100%;
+      gap: 32px;
+      padding: 120px 24px 0;
+      @extend %flex-column-center;
+
+      @media (max-width: $tablet-w) {
+        padding: 48px 15px 0;
+      }
+
+      &__items {
+        @include cardsWrapper();
+      }
+    }
+
+    &__footer {
+      width: 100%;
+      margin-top: 32px;
+
+      &__delivery {
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(9, 21, 36, 0.07);
+        gap: 16px;
+        @extend %flex-column;
+      }
+
+      &__comments {
+        padding: 24px 0;
+        border-top: 1px solid rgba(9, 21, 36, 0.07);
+        border-bottom: 1px solid rgba(9, 21, 36, 0.07);
+        gap: 16px;
+        @extend %flex-column;
+
+        &__container {
+          display: flex;
+          gap: 10px;
+          width: 100%;
+          overflow: auto;
+          @include scrollbarHorizontal(0);
+        }
+
+        &__head {
+          width: 100%;
+          @extend %flex-justify-between;
+
+          &__title {
+            color: $black-600;
+            gap: 10px;
+            @extend %flex-align;
+            @extend %secondary-2;
+          }
+
+          &__subtitle {
+            color: $black-600;
+            gap: 10px;
+            @extend %micro-5;
+            @extend %flex-align;
+          }
+
+          &__link {
+            color: $red;
+            gap: 10px;
+            @include svgFill($red, 10px);
+            @extend %flex-align;
+            @extend %secondary-1;
+          }
+        }
+      }
+    }
+
+    &__description {
+      margin-top: 32px;
+
+      &__title {
+        color: $black-600;
+        @extend %micro-3;
+      }
+
+      &__text {
+        color: $black-300;
+        @extend %secondary-1;
+        margin-top: 12px;
+        margin-bottom: 24px;
+      }
+    }
+
+    &__slider {
+      width: 100%;
+      max-width: 580px;
+      border-radius: 8px;
+
+      img {
+        border-radius: 8px;
+      }
+    }
+
+    &__top {
+      gap: 40px;
+      display: flex;
+
+      @media (max-width: $wide) {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    &__right {
+      width: 100%;
+      max-width: 580px;
+
+      &__buttons {
+        gap: 10px;
+        margin-top: 32px;
+        @extend %flex-column;
+      }
+
+      &__title {
+        color: $black-600;
+        @extend %heading-5;
+
+        @media (max-width: $tablet) {
+          font-size: 26px;
+          font-weight: 600;
+        }
+      }
+
+      &__code {
+        margin-top: 12px;
+        color: $black-400;
+        @extend %secondary-1;
+
+        @media (max-width: $tablet) {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+
+      &__price {
+        margin-top: 32px;
+        color: $red;
+        @extend %heading-3;
+
+        @media (max-width: $tablet) {
+          font-size: 30px;
+          font-weight: 700;
+        }
+
+        &__old {
+          color: $black-300;
+          @extend %subheading-4;
+          text-decoration: line-through;
+
+          @media (max-width: $tablet) {
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+      }
+
+      &__in_store {
+        border-radius: 2px;
+        width: max-content;
+        border: 1px solid rgba(149, 149, 149, 0.5);
+        color: $black-300;
+        @extend %secondary-1;
+      }
+    }
+  }
+
+  &__store {
+    gap: 12px;
+    margin-top: 32px;
+    @extend %flex-column;
+
+    &__title_container {
+      gap: 12px;
+      @extend %flex-justify-between;
+    }
+
+    &__title {
+      color: $black;
+      @extend %micro-3;
+    }
+
+    &__subtitle {
+      color: $red;
+      @extend %secondary-1;
+    }
+  }
+}
+
+.store {
+  display: flex;
+  gap: 8px;
+
+  &__item {
+    width: 76px;
+    height: 76px;
+    color: $black-300;
+    @extend %flex-column-center;
+    background-color: $white-100;
+    border-radius: 8px;
+
+    &__store_number {
+      @extend %micro-3;
+    }
+
+    &__number_items {
+      @extend %micro-4;
+    }
+
+    &__active {
+      color: $white;
+      background-color: $red;
+    }
+
+    &__disabled {
+      color: rgba(149, 149, 149, 0.5);
+    }
+  }
+}

@@ -16,6 +16,7 @@ const Saved: FC = () => {
       price={element.price}
       promotion={element.promotion}
       oldPrice={element.oldPrice}
+      isCheck
     />
   ))
 

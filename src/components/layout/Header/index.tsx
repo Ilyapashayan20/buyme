@@ -5,7 +5,7 @@ import { useResponsive } from 'hooks'
 import InputAuth from 'components/atom/Input/Auth'
 import { Link, NavLink } from 'react-router-dom'
 import { Button, Checkbox, Menu, Modal, Search } from 'components'
-import { BurgerIcon, HeartIcon, LogoIcon, ShopCartIcon, UserIcon } from 'assets'
+import { BurgerIcon, HeartStrokeIcon, LogoIcon, ShopCartIcon, UserIcon } from 'assets'
 
 import type { TModalState } from './type'
 import styles from './Header.module.scss'
@@ -82,7 +82,7 @@ const Header: FC = () => {
                     : styles.wrapper__icons_group__item
                 }
               >
-                <HeartIcon />
+                <HeartStrokeIcon />
 
                 <p>Бажане</p>
               </NavLink>
