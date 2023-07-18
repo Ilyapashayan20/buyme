@@ -10,6 +10,7 @@
   background-color: $red;
   border-radius: 6px;
   gap: 10px;
+  justify-content: center;
   @extend %flex-align;
   @extend %secondary-1;
   @include svgFill($white);

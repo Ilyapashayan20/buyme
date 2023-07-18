@@ -8,6 +8,9 @@
   margin-top: 72px;
   gap: 24px;
   @extend %flex-column;
+  @media (max-width:$tablet-w) {
+    margin: 240px auto;
+  }
 
   &__title {
     color: $black;
