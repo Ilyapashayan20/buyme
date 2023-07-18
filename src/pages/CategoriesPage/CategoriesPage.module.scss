@@ -27,7 +27,6 @@
 
   &__container {
     width: 100%;
-    gap: 120px;
     @extend %flex-column;
   }
 
@@ -57,13 +56,12 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: $tablet-l) {
-      display: flex;
+    @media (max-width: $tablet-w) {
+      display: grid;
       justify-content: flex-start;
-      flex-wrap: nowrap;
-      overflow-x: auto;
       max-width: 828px;
       width: 100%;
+      grid-template-columns: auto auto;
       @include scrollbarHorizontal(0);
     }
 
@@ -89,6 +87,10 @@
 
         img {
           object-fit: contain;
+        }
+        @media (max-width: $tablet-w) {
+          width: auto;
+          height: auto;
         }
       }
     }

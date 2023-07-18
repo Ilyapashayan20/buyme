@@ -10,6 +10,7 @@ const Saved = lazy(() => import('pages/Saved'))
 const Placing = lazy(() => import('pages/Placing'))
 const Product = lazy(() => import('pages/Product'))
 const CategoriesPage = lazy(() => import('pages/CategoriesPage'))
+const MainCategoriesPage = lazy(() => import('pages/MainCategory'))
 
 const routesList: TRoutePageType[] = [
   {
@@ -20,22 +21,22 @@ const routesList: TRoutePageType[] = [
   {
     element: Login,
     path: ERoutePaths.Login,
-    title: 'Login',
+    title: 'Login page',
   },
   {
     element: Signup,
     path: ERoutePaths.Signup,
-    title: 'Signup',
+    title: 'Signup page',
   },
   {
     element: Basket,
     path: ERoutePaths.Basket,
-    title: 'Basket',
+    title: 'Basket page',
   },
   {
     element: Placing,
     path: ERoutePaths.Placing,
-    title: 'Placing',
+    title: 'Placing page',
   },
   {
     element: Saved,
@@ -45,12 +46,17 @@ const routesList: TRoutePageType[] = [
   {
     element: Product,
     path: ERoutePaths.Product,
-    title: 'Product',
+    title: 'Product Page',
   },
 
   {
     element: CategoriesPage,
     path: ERoutePaths.CategoriesPage,
+    title: 'Categories Page',
+  },
+  {
+    element: MainCategoriesPage,
+    path: ERoutePaths.MainCategoriesPage,
     title: 'Categories Page',
   },
 ]

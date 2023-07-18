@@ -5,7 +5,7 @@ import styles from './Checkbox.module.scss'
 
 const Checkbox: FC<TCheckboxProps> = ({ title }) => (
   <div className={styles.wrapper}>
-    <input className={styles.checkbox} type='checkbox' checked />
+    <input className={styles.checkbox} type='checkbox'  />
 
     <span className={styles.checkbox__title}>{title}</span>
   </div>
