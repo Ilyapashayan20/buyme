@@ -14,7 +14,7 @@ const Login: FC = () => {
 
       <Checkbox title='Запам’ятати мене' />
 
-      <Button>Увійти</Button>
+      <Button className={styles.wrapper__button}  >Увійти</Button>
 
       <Link className={styles.wrapper__link} to='/signup'>
         Зареєструватися

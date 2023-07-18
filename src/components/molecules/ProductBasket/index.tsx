@@ -71,7 +71,7 @@ const ProductBasket: FC<any> = ({ product }) => {
           )}
         </div>
       </div>
-      {!isMobile && <h3 style={{ color: '#AB0000', fontWeight: 400 }}>Видалити</h3>}
+      {!isMobile && <button style={{ color: '#AB0000', fontWeight: 400 }}>Видалити</button>}
     </div>
   )
 }

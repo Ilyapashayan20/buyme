@@ -15,7 +15,7 @@ const Signup: FC = () => {
         Реєструючись, ви погоджуєтеся з умовами <b> положення про обробку і захист персональних даних </b> та{' '}
         <b> угодою користувача </b>
       </p>
-      <Button>Зареєструватися</Button>
+      <Button className={styles.wrapper__button}>Зареєструватися</Button>
       <Link className={styles.wrapper__link} to='/login'>
         Я вже зареєстрований
       </Link>
