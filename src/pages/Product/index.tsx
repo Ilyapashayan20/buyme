@@ -5,7 +5,7 @@ import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 
 import { useResponsive } from 'hooks'
-import { Button, Card, Comment, Title } from 'components'
+import { Button, Card, Chat, Comment, Title } from 'components'
 import { ArrowRIghtIcon, CartPlusIcon, CommentIcon, CopyIcon, DeliveryIcon, HLogoIcon, TGIcon } from 'assets'
 
 import { storeItems } from './utils'
@@ -226,6 +226,8 @@ const Product: FC = () => {
           <div className={styles.wrapper__container__bottom__items}>{renderCardItems}</div>
         </div>
       </div>
+
+      {!isTablet && <Chat />}
     </section>
   )
 }

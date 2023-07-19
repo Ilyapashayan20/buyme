@@ -1,12 +1,15 @@
 import type { FC } from 'react'
 
+import { useResponsive } from 'hooks'
+import { Card, Chat, Title } from 'components'
+import { itemData } from 'utils/shared/itemsData'
 import { categoriesData } from 'components/molecules/Categories/utils'
 
 import styles from './CategoriesPage.module.scss'
-import { itemData } from 'utils/shared/itemsData'
-import { Card, Title } from 'components'
 
 const CategoriesPage: FC = () => {
+  const { isTablet } = useResponsive()
+
   const renderCategories = categoriesData.map((element, index) => (
     <div className={styles.wrapper__categories__item} key={index}>
       <div className={styles.wrapper__categories__item__image_container}>
@@ -45,6 +48,7 @@ const CategoriesPage: FC = () => {
           <div className={styles.wrapper__recommend__content}>{renderItems}</div>
         </div>
       </div>
+      {!isTablet && <Chat />}
     </div>
   )
 }

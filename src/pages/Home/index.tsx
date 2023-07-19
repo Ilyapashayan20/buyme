@@ -4,6 +4,7 @@ import { useResponsive } from 'hooks'
 import {
   Ad,
   Categories,
+  Chat,
   EconomYourTime,
   FooterImages,
   Novelty,
@@ -23,6 +24,8 @@ const Home: FC = () => {
       {isTablet && <Search />}
 
       <Slider />
+
+      {!isTablet && <Chat />}
 
       <Categories />
 

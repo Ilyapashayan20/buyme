@@ -1,13 +1,13 @@
 import { FC, useState } from 'react'
 import styles from './Placing.module.scss'
-import { Button, ToOrder } from 'components'
+import { Button, Chat, ToOrder } from 'components'
 import classNames from 'classnames'
 import { ArrowBottomIcon } from 'assets'
 import { useResponsive } from 'hooks'
 
 const Placing: FC = () => {
   const [activeStep, setActiveStep] = useState(1)
-  const { isMobile } = useResponsive()
+  const { isMobile, isTablet } = useResponsive()
 
   const handleStepClick = (index: number) => {
     setActiveStep(index)
@@ -158,6 +158,8 @@ const Placing: FC = () => {
           {!isMobile && <ToOrder />}
         </div>
       </div>
+
+      {!isTablet && <Chat />}
     </section>
   )
 }

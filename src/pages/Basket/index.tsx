@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 
-import { ProductBasket, ToOrder } from 'components'
+import { useResponsive } from 'hooks'
+import { Chat, ProductBasket, ToOrder } from 'components'
 import { productsBasketData } from 'components/molecules/ProductBasket/utils'
 
 import styles from './Basket.module.scss'
@@ -9,6 +10,8 @@ const Basket: FC = () => {
   const renderProductsBasket = productsBasketData.map((element, index) => (
     <ProductBasket product={element} key={index} />
   ))
+
+  const { isTablet } = useResponsive()
 
   return (
     <section className={styles.wrapper}>
@@ -29,6 +32,8 @@ const Basket: FC = () => {
           <ToOrder />
         </div>
       </div>
+
+      {!isTablet && <Chat />}
     </section>
   )
 }

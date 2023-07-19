@@ -1,11 +1,14 @@
 import type { FC } from 'react'
 
-import { Card } from 'components'
+import { Card, Chat } from 'components'
+import { useResponsive } from 'hooks'
 import { savedItems } from 'utils/shared/savedItems'
 
 import styles from './Saved.module.scss'
 
 const Saved: FC = () => {
+  const { isTablet } = useResponsive()
+
   const renderItems = savedItems.map((element, index) => (
     <Card
       key={index}
@@ -29,6 +32,8 @@ const Saved: FC = () => {
       </div>
 
       <div className={styles.wrapper__items}>{renderItems}</div>
+
+      {!isTablet && <Chat />}
     </section>
   )
 }

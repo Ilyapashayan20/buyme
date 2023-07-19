@@ -3,9 +3,10 @@ import type { FC } from 'react'
 import styles from './MainCategories.module.scss'
 import { itemData } from 'utils/shared/itemsData'
 
-import { Card } from 'components'
+import { Card, Chat } from 'components'
 import { filterData } from 'utils/shared/filtersData'
 import Filter from 'components/atom/Filter'
+import { useResponsive } from 'hooks'
 
 const MainCategoriesPage: FC = () => {
   const renderItems = itemData.map((element, index) => (
@@ -19,13 +20,11 @@ const MainCategoriesPage: FC = () => {
     />
   ))
 
-const renderFilters = filterData.map((filter,index)=>(
-    <Filter
-      key={index}
-      title={filter.title}
-      items={filter.items}
-    />
-))
+  const renderFilters = filterData.map((filter, index) => (
+    <Filter key={index} title={filter.title} items={filter.items} />
+  ))
+
+  const { isTablet } = useResponsive()
 
   return (
     <div className={styles.wrapper}>
@@ -42,13 +41,13 @@ const renderFilters = filterData.map((filter,index)=>(
       </div>
 
       <div className={styles.wrapper__container}>
-        <div className={styles.wrapper__container__filters}>
-            {renderFilters}
-        </div>
+        <div className={styles.wrapper__container__filters}>{renderFilters}</div>
         <div className={styles.wrapper__recommend}>
           <div className={styles.wrapper__recommend__content}>{renderItems}</div>
         </div>
       </div>
+
+      {!isTablet && <Chat />}
     </div>
   )
 }
