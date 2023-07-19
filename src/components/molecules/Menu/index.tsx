@@ -27,7 +27,8 @@ const Menu: FC = () => {
   const renderCatalogItem = catalogueItem.map(({ Icon, text }, index) => (
     <div
       key={uniqueId()}
-      onClick={() => handleCatalogNumberChanging(index)}
+      onMouseOver={() => handleCatalogNumberChanging(index)}
+      onMouseOut={() => handleCatalogNumberChanging(0)}
       className={classNames(styles.wrapper__dropdown__left__item, {
         [styles.wrapper__dropdown__left__item__active]: index === catalogNumber,
       })}
