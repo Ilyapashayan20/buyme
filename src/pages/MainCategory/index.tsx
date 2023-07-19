@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import styles from './MainCategories.module.scss'
 import { itemData } from 'utils/shared/itemsData'
 
-import { Card, Chat } from 'components'
+import { Button, Card, Chat } from 'components'
 import { filterData } from 'utils/shared/filtersData'
 import Filter from 'components/atom/Filter'
 import { useResponsive } from 'hooks'
@@ -21,10 +21,8 @@ const MainCategoriesPage: FC = () => {
   ))
 
   const renderFilters = filterData.map((filter, index) => (
-    <Filter key={index} title={filter.title} items={filter.items} />
+    <Filter key={index} title={filter.title} items={filter.items} warehouse={filter.warehouse} />
   ))
-
-  const { isTablet } = useResponsive()
 
   return (
     <div className={styles.wrapper}>
@@ -41,7 +39,11 @@ const MainCategoriesPage: FC = () => {
       </div>
 
       <div className={styles.wrapper__container}>
-        <div className={styles.wrapper__container__filters}>{renderFilters}</div>
+        <div className={styles.wrapper__container__filters}>
+          {renderFilters}
+          <Button className={styles.wrapper__container__filters__btn1}>Застосувати</Button>
+          <Button className={styles.wrapper__container__filters__btn2}>Очистити фільтри</Button>
+        </div>
         <div className={styles.wrapper__recommend}>
           <div className={styles.wrapper__recommend__content}>{renderItems}</div>
         </div>
