@@ -8,7 +8,7 @@ const FooterImages: FC = () => {
   const images = new Array(6).fill('')
 
   const renderImages = images.map((_, index) => (
-    <img width='240px' height='240px' src={`images/footer/${index + 1}.png`} />
+    <img width='240px' key={index} height='240px' src={`images/footer/${index + 1}.png`} />
   ))
 
   return (

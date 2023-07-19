@@ -7,10 +7,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &__chat {
-    border-radius: 180px;
-  }
-
   @media (max-width: $tablet-w) {
     margin-top: 80px;
   }

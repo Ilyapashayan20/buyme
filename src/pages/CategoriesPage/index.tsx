@@ -1,10 +1,10 @@
 import type { FC } from 'react'
 
+import { Card, Title } from 'components'
+import { itemData } from 'utils/shared/itemsData'
 import { categoriesData } from 'components/molecules/Categories/utils'
 
 import styles from './CategoriesPage.module.scss'
-import { itemData } from 'utils/shared/itemsData'
-import { Card, Title } from 'components'
 
 const CategoriesPage: FC = () => {
   const renderCategories = categoriesData.map((element, index) => (

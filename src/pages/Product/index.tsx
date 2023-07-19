@@ -1,4 +1,4 @@
-import { useState, type FC, useRef } from 'react'
+import { type FC, useRef } from 'react'
 
 import classNames from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
@@ -14,8 +14,6 @@ import styles from './Product.module.scss'
 
 const Product: FC = () => {
   const carouselRef = useRef<any>(null)
-
-  const [activeItem, setActiveItem] = useState<number>(0)
 
   const renderCardItems = itemData.map((element, index) => (
     <Card
@@ -66,10 +64,6 @@ const Product: FC = () => {
     <img src='images/boots.png' width='100%' height='100%' />,
   ]
 
-  const handleSlideChange = (e: any) => {
-    setActiveItem(e.item)
-  }
-
   const handleGoToClick = (slideIndex: number) => {
     if (carouselRef.current) {
       carouselRef.current.slideTo(slideIndex)
@@ -77,11 +71,7 @@ const Product: FC = () => {
   }
 
   const renderSliderBottom = sliderItems.map((element, index) => (
-    <div
-      onClick={() => handleGoToClick(index)}
-      className={classNames(styles.slider__bottom, { [styles.slider__bottom__active]: activeItem === index })}
-      key={index}
-    >
+    <div role='button' onClick={() => handleGoToClick(index)} className={classNames(styles.slider__bottom)} key={index}>
       {element}
     </div>
   ))
@@ -96,7 +86,7 @@ const Product: FC = () => {
       <div className={styles.wrapper__container}>
         <div className={styles.wrapper__container__top}>
           <div className={styles.wrapper__container__slider}>
-            <AliceCarousel ref={carouselRef} onSlideChange={handleSlideChange} items={sliderItems} mouseTracking />
+            <AliceCarousel ref={carouselRef} items={sliderItems} mouseTracking />
 
             {!isTablet && <div className={styles.wrapper__container__slider__bottom}>{renderSliderBottom}</div>}
           </div>

@@ -4,13 +4,21 @@
 
 .wrapper {
   width: 100%;
-  padding: 32px 32px 55px;
-  background-color: $black-100;
+
+  &__chat {
+    width: 100%;
+    margin-bottom: 16px;
+    padding-right: 120px;
+
+    &__actve {
+      display: none;
+    }
+  }
 
   &__container {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 32px 120px 55px;
+    background-color: $black-100;
     gap: 16px;
     @extend %flex-justify-between-center;
 

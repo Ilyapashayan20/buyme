@@ -19,14 +19,9 @@ const MainCategoriesPage: FC = () => {
     />
   ))
 
-const renderFilters = filterData.map((filter,index)=>(
-    <Filter
-      key={index}
-      title={filter.title}
-      items={filter.items}
-      warehouse={filter.warehouse}
-    />
-))
+  const renderFilters = filterData.map((filter, index) => (
+    <Filter key={index} title={filter.title} items={filter.items} warehouse={filter.warehouse} />
+  ))
 
   return (
     <div className={styles.wrapper}>
@@ -44,10 +39,9 @@ const renderFilters = filterData.map((filter,index)=>(
 
       <div className={styles.wrapper__container}>
         <div className={styles.wrapper__container__filters}>
-            {renderFilters}
-            <Button className={styles.wrapper__container__filters__btn1}>Застосувати</Button>
-            <Button className={styles.wrapper__container__filters__btn2} >Очистити фільтри</Button>
-
+          {renderFilters}
+          <Button className={styles.wrapper__container__filters__btn1}>Застосувати</Button>
+          <Button className={styles.wrapper__container__filters__btn2}>Очистити фільтри</Button>
         </div>
         <div className={styles.wrapper__recommend}>
           <div className={styles.wrapper__recommend__content}>{renderItems}</div>

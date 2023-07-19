@@ -1,0 +1,21 @@
+@import 'styles/vars';
+@import 'styles/typography';
+@import 'styles/mixins';
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 32px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: flex-end;
+
+  &__button {
+    border-radius: 180px;
+    max-width: 128px;
+    height: 56px;
+    @extend %flex-center;
+    @include svgSize(24px, 24px);
+  }
+}
