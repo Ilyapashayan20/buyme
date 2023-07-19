@@ -1,13 +1,10 @@
 import type { FC } from 'react'
-import { Button, Chat } from 'components'
+import { Button } from 'components'
 import InputAuth from 'components/atom/Input/Auth'
 import styles from '../Auth.module.scss'
 import { Link } from 'react-router-dom'
-import { useResponsive } from 'hooks'
 
 const Signup: FC = () => {
-  const { isTablet } = useResponsive()
-
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.wrapper__title}>Реєстрація</h1>
@@ -22,8 +19,6 @@ const Signup: FC = () => {
       <Link className={styles.wrapper__link} to='/login'>
         Я вже зареєстрований
       </Link>
-
-      {!isTablet && <Chat />}
     </div>
   )
 }

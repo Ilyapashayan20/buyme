@@ -1,7 +1,8 @@
-import { type FC, useState, useEffect } from 'react'
+import { type FC, useState, useEffect, useRef } from 'react'
 import classNames from 'classnames'
 
-import { useLockBodyScroll } from 'hooks'
+import { uniqueId } from 'lodash'
+import { useLockBodyScroll, useOnClickOutside } from 'hooks'
 import { ArrowRIghtIcon, CloseIcon, ListIcon } from 'assets'
 
 import { catalogueData, catalogueItem } from './utils'
@@ -18,11 +19,14 @@ const Menu: FC = () => {
 
   const handleCatalogNumberChanging = (id: number) => setCatalogNumber(id)
 
+  const ref = useRef(null)
+
+  useOnClickOutside(ref, () => setDroped(false))
   useLockBodyScroll(!droped)
 
   const renderCatalogItem = catalogueItem.map(({ Icon, text }, index) => (
     <div
-      key={index}
+      key={uniqueId()}
       onClick={() => handleCatalogNumberChanging(index)}
       className={classNames(styles.wrapper__dropdown__left__item, {
         [styles.wrapper__dropdown__left__item__active]: index === catalogNumber,
@@ -43,7 +47,7 @@ const Menu: FC = () => {
       setRenderItem1(
         array[catalogNumber][0].map(({ text, isRed }) => (
           <p
-            key={index}
+            key={uniqueId()}
             className={classNames(styles.wrapper__dropdown__right__text, {
               [styles.wrapper__dropdown__right__text__red]: isRed,
             })}
@@ -56,7 +60,7 @@ const Menu: FC = () => {
       setRenderItem2(
         array[catalogNumber][1].map(({ text, isRed }) => (
           <p
-            key={index}
+            key={uniqueId()}
             className={classNames(styles.wrapper__dropdown__right__text, {
               [styles.wrapper__dropdown__right__text__red]: isRed,
             })}
@@ -69,7 +73,7 @@ const Menu: FC = () => {
       setRenderItem3(
         array[catalogNumber][2].map(({ text, isRed }) => (
           <p
-            key={index}
+            key={uniqueId()}
             className={classNames(styles.wrapper__dropdown__right__text, {
               [styles.wrapper__dropdown__right__text__red]: isRed,
             })}
@@ -90,7 +94,7 @@ const Menu: FC = () => {
       </button>
 
       <div className={classNames(styles.wrapper__container, { [styles.wrapper__dropdown__droped]: droped })}>
-        <div className={styles.wrapper__dropdown}>
+        <div ref={ref} className={styles.wrapper__dropdown}>
           <div className={styles.wrapper__dropdown__left}>
             <h2 className={styles.wrapper__dropdown__left__title}>Категорії</h2>
 

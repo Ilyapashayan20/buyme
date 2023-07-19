@@ -3,10 +3,9 @@ import type { FC } from 'react'
 import styles from './MainCategories.module.scss'
 import { itemData } from 'utils/shared/itemsData'
 
-import { Button, Card, Chat } from 'components'
+import { Button, Card } from 'components'
 import { filterData } from 'utils/shared/filtersData'
 import Filter from 'components/atom/Filter'
-import { useResponsive } from 'hooks'
 
 const MainCategoriesPage: FC = () => {
   const renderItems = itemData.map((element, index) => (
@@ -48,8 +47,6 @@ const MainCategoriesPage: FC = () => {
           <div className={styles.wrapper__recommend__content}>{renderItems}</div>
         </div>
       </div>
-
-      {!isTablet && <Chat />}
     </div>
   )
 }
