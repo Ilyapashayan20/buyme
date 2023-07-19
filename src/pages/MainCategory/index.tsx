@@ -26,7 +26,7 @@ const MainCategoriesPage: FC = () => {
   return (
     <div className={styles.wrapper}>
       <p className={styles.wrapper__routes}>
-        Головна /<span className={styles.wrapper__routes}>Каталог /</span>
+        Головна <span>/</span><span className={styles.wrapper__routes}>Каталог </span><span>/</span>
         <span className={styles.wrapper__routes__last}>Для чоловіків</span>
       </p>
 

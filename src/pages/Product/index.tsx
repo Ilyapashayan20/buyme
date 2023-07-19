@@ -36,7 +36,7 @@ const Product: FC = () => {
     >
       <p className={styles.store__item__store_number}>{element.numberOfStore}</p>
 
-      <p className={styles.store__item__number_items}>{element.numberOfItems} шт</p>
+      <p className={styles.store__item__number_items}>({element.numberOfItems} шт)</p>
     </div>
   ))
 
@@ -51,7 +51,7 @@ const Product: FC = () => {
       >
         <p className={styles.store__item__store_number}>{element.numberOfStore}</p>
 
-        <p className={styles.store__item__number_items}>{element.numberOfItems} шт</p>
+       <p className={styles.store__item__number_items}>({element.numberOfItems} шт ) </p>
       </div>
     ) : null
   )
@@ -79,8 +79,8 @@ const Product: FC = () => {
   return (
     <section className={styles.wrapper}>
       <h3 className={styles.wrapper__routes}>
-        Каталог товарів / Військторг / Тактичне взуття /
-        <span className={styles.wrapper__routes__last}> Тактичні кросівки scooter</span>
+        Каталог товарів  <span>/</span>Військторг<span>/</span> Тактичне взуття <span>/</span>
+        <span className={styles.wrapper__routes__last}>Тактичні кросівки scooter</span>
       </h3>
 
       <div className={styles.wrapper__container}>

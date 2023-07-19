@@ -19,6 +19,9 @@
     &__routes {
         color: $black-300;
         @extend %secondary-1;
+        span{
+            margin: 0 6px;
+        }
 
         @media (max-width: $tablet) {
             font-size: 12px;

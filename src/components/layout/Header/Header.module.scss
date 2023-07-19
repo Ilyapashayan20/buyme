@@ -79,6 +79,7 @@
   &__link {
     text-align: center;
     color: $red;
+    font-weight: 300;
     @extend %micro-3, %flex-justify-center;
   }
 
@@ -89,6 +90,9 @@
     b {
       color: $red;
     }
+  }
+  @media (max-width:$tablet) {
+    padding: 18px 0;
   }
 }
 
@@ -123,6 +127,9 @@
   &__buttons {
     gap: 10px;
     @extend %flex-justify-between;
+    @media (max-width:$tablet) {
+      flex-direction: column;
+    }
 
     button {
       padding: 16px 32px;
@@ -133,5 +140,12 @@
       color: $red;
       border: 2px solid $red;
     }
+  }
+  @media (max-width:$tablet) {
+    width: 100%;
+    min-width: 0px;
+      padding: 18px 0px;
+    
+
   }
 }

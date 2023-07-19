@@ -27,6 +27,10 @@
                 margin-bottom: 16px;
                 border-bottom: 1px solid  #959595;
                 @extend %flex-justify-between,%micro-2;
+                p{
+                    text-transform: uppercase;
+
+                }
             }
            }
            @media (max-width: $tablet-l) {

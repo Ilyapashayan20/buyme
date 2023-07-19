@@ -17,7 +17,12 @@
 
   &__routes {
     color: $black-300;
+
     @extend %secondary-1;
+
+    span{
+      margin: 0 6px;
+    }
 
     @media (max-width: $tablet) {
       font-size: 12px;
@@ -205,6 +210,8 @@
 
       &__in_store {
         border-radius: 2px;
+        margin-top: 16px;
+        padding: 6px;
         width: max-content;
         border: 1px solid rgba(149, 149, 149, 0.5);
         color: $black-300;
@@ -242,6 +249,7 @@
   &__item {
     width: 76px;
     height: 76px;
+    cursor: pointer;
     color: $black-300;
     @extend %flex-column-center;
     background-color: $white-100;
@@ -257,6 +265,7 @@
 
     &__active {
       color: $white;
+      cursor: pointer;
       background-color: $red;
     }
 
