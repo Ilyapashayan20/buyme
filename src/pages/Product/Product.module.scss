@@ -20,7 +20,7 @@
 
     @extend %secondary-1;
 
-    span{
+    span {
       margin: 0 6px;
     }
 
@@ -275,20 +275,49 @@
   }
 }
 
-.slider__bottom {
-  border-radius: 6px;
-  border: 1px solid #959595;
-  filter: grayscale(0.3);
-  width: 76px;
-  height: 76px;
-  cursor: pointer;
-  transition: 0.3s;
+.slider {
+  &__custom__next__button {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-  &__active,
-  &:hover {
-    border: 1px solid #1a1a1a;
-    filter: grayscale(0);
+  &__custom__prev__button {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    background: lightgray 50% / cover no-repeat;
+  &__custom__buttons {
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    background: #959595;
+    cursor: pointer;
+    position: absolute;
+    @extend %flex-center;
+    @include svgFill($white);
+
+    &:hover {
+      background-color: $red;
+    }
+  }
+
+  &__bottom {
+    border-radius: 6px;
+    border: 1px solid #959595;
+    filter: grayscale(0.3);
+    width: 76px;
+    height: 76px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &__active,
+    &:hover {
+      border: 1px solid #1a1a1a;
+      filter: grayscale(0);
+
+      background: lightgray 50% / cover no-repeat;
+    }
   }
 }
