@@ -28,7 +28,6 @@ const Menu: FC = () => {
     <div
       key={uniqueId()}
       onMouseOver={() => handleCatalogNumberChanging(index)}
-      onMouseOut={() => handleCatalogNumberChanging(0)}
       className={classNames(styles.wrapper__dropdown__left__item, {
         [styles.wrapper__dropdown__left__item__active]: index === catalogNumber,
       })}
