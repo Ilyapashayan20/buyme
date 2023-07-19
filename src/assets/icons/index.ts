@@ -35,3 +35,6 @@ export { ReactComponent as ChatIcon } from './chat.svg'
 export { ReactComponent as ChervonDownIcon} from './chevron-down.svg'
 export {ReactComponent as MenuRightIcon} from './menu-right.svg'
 export {ReactComponent as MenuLeftIcon} from './menu-left.svg'
+export {ReactComponent as LockIcon} from './lock.svg'
+export {ReactComponent as UnlockIcon} from './unlock.svg'
+

@@ -124,6 +124,163 @@
                         font-size: 10px;
                     }
                 }
+                &__stepper__mobile{
+                    position: relative;
+                    margin-top: 32px;
+                    padding: 0 55px;
+                    max-width: 344px;
+                    margin-bottom: 0;
+                    margin: 32px   auto;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    @media (max-width:660px) {
+                        justify-content: center;
+                    }
+
+                    &__step__1 {
+                        width: 100%;
+                        min-width: 126px;
+                        max-width: 126px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        align-items: start;
+                        text-align: center;
+                        cursor: pointer;
+                        gap: 2px;
+                        font-weight: 500;
+                        color: #959595;
+                        &__container{
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            &__lock{
+                                background-color: #959595;
+                                border-radius: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 24px;
+                                height: 24px;
+                             
+                            }
+                            p{
+                                font-size: 14px;
+                                font-weight: 500;
+                            }
+                        }
+                        &__container__active{
+                            div{
+                                background: black;
+                            }
+                            p{
+                                color: black;
+                            }
+                        }
+
+
+                        &__block {
+                            background: #9595951A;
+                            padding: 12px 0px;
+                            border-radius: 50px;
+
+                        }
+
+                        &__block__active {
+                            background-color: #ab0000;
+                            color: white;
+                        }
+
+                        &__line1{
+                          width: 72px;
+                          height: 1px;
+                          background: #D7D7D7;
+                          position: absolute;
+                          top: 20%;
+                          left: 54%;
+                        }
+                        &__line2{
+                            width: 72px;
+                            height: 1px;
+                            background: #D7D7D7;
+                            position: absolute;
+                            top: 20%;
+                            left: 16%;
+                          }
+                    }
+                    &__step__3 {
+                        width: 100%;
+                        min-width: 89px;
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        align-items: start;
+                        text-align: center;
+                        cursor: pointer;
+                        gap: 2px;
+                        font-weight: 500;
+                        color: #959595;
+                        &__container{
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            &__lock{
+                                background-color: #959595;
+                                border-radius: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 24px;
+                                height: 24px;
+                             
+                            }
+                            p{
+                                font-size: 14px;
+                                font-weight: 500;
+                            }
+                        }
+                        &__container__active{
+                            div{
+                                background: black;
+                            }
+                            p{
+                                color: black;
+                            }
+                        }
+
+
+                        &__block {
+                            background: #9595951A;
+                            padding: 12px 0px;
+                            border-radius: 50px;
+
+                        }
+
+                        &__block__active {
+                            background-color: #ab0000;
+                            color: white;
+                        }
+
+                        &__line{
+                          width: 72px;
+                          height: 1px;
+                          background: #D7D7D7;
+                          position: absolute;
+                          top: 20%;
+                          right: 0;
+                        }
+                    }
+
+                    @media (max-width:600px) {
+                        padding: 0 14px;
+                        font-size: 12px;
+                    }
+                }
 
                 &__stepper__container {
                     margin-top: 48px;
@@ -179,6 +336,10 @@
                             align-items: center;
                             width: 345px;
                         }
+                    }
+
+                    @media (max-width: $tablet) {
+                        margin-top: 14px ;
                     }
 
                 }

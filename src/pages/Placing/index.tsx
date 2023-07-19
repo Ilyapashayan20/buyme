@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import styles from './Placing.module.scss'
 import { Button, ToOrder } from 'components'
 import classNames from 'classnames'
-import { ArrowBottomIcon } from 'assets'
+import { ArrowBottomIcon, LockIcon, UnlockIcon } from 'assets'
 import { useResponsive } from 'hooks'
 
 const Placing: FC = () => {
@@ -38,44 +38,126 @@ const Placing: FC = () => {
                 <p className={styles.wrapper__container__basket__products__product__info__price}>799 ₴ / дроп</p>
               </div>
             </div>
-            <div className={styles.wrapper__container__basket__products__stepper}>
-              <div
-                onClick={() => handleStepClick(1)}
-                className={classNames(styles.wrapper__container__basket__products__stepper__step__1)}
-              >
+            {!isMobile ? (
+              <div className={styles.wrapper__container__basket__products__stepper}>
                 <div
-                  className={classNames(styles.wrapper__container__basket__products__stepper__step__1__block, {
-                    [styles['wrapper__container__basket__products__stepper__step__1__block__active']]: activeStep === 1,
-                  })}
+                  onClick={() => handleStepClick(1)}
+                  className={classNames(styles.wrapper__container__basket__products__stepper__step__1)}
                 >
-                  Доставка
-                </div>{' '}
-              </div>
-              <div
-                onClick={() => handleStepClick(2)}
-                className={classNames(styles.wrapper__container__basket__products__stepper__step__1)}
-              >
+                  <div
+                    className={classNames(styles.wrapper__container__basket__products__stepper__step__1__block, {
+                      [styles['wrapper__container__basket__products__stepper__step__1__block__active']]:
+                        activeStep === 1,
+                    })}
+                  >
+                    Доставка
+                  </div>{' '}
+                </div>
                 <div
-                  className={classNames(styles.wrapper__container__basket__products__stepper__step__1__block, {
-                    [styles['wrapper__container__basket__products__stepper__step__1__block__active']]: activeStep === 2,
-                  })}
+                  onClick={() => handleStepClick(2)}
+                  className={classNames(styles.wrapper__container__basket__products__stepper__step__1)}
                 >
-                  Оплата
-                </div>{' '}
-              </div>
-              <div
-                onClick={() => handleStepClick(3)}
-                className={classNames(styles.wrapper__container__basket__products__stepper__step__1)}
-              >
+                  <div
+                    className={classNames(styles.wrapper__container__basket__products__stepper__step__1__block, {
+                      [styles['wrapper__container__basket__products__stepper__step__1__block__active']]:
+                        activeStep === 2,
+                    })}
+                  >
+                    Оплата
+                  </div>{' '}
+                </div>
                 <div
-                  className={classNames(styles.wrapper__container__basket__products__stepper__step__1__block, {
-                    [styles['wrapper__container__basket__products__stepper__step__1__block__active']]: activeStep === 3,
-                  })}
+                  onClick={() => handleStepClick(3)}
+                  className={classNames(styles.wrapper__container__basket__products__stepper__step__1)}
                 >
-                  Особисті дані
+                  <div
+                    className={classNames(styles.wrapper__container__basket__products__stepper__step__1__block, {
+                      [styles['wrapper__container__basket__products__stepper__step__1__block__active']]:
+                        activeStep === 3,
+                    })}
+                  >
+                    Особисті дані
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className={styles.wrapper__container__basket__products__stepper__mobile}>
+                <div
+                  onClick={() => handleStepClick(1)}
+                  className={classNames(styles.wrapper__container__basket__products__stepper__mobile__step__1)}
+                >
+                  <div
+                    className={classNames(
+                      styles.wrapper__container__basket__products__stepper__mobile__step__1__container,
+                      {
+                        [styles['wrapper__container__basket__products__stepper__mobile__step__1__container__active']]:
+                          activeStep === 1,
+                      }
+                    )}
+                  >
+                    <div
+                      className={classNames(
+                        styles.wrapper__container__basket__products__stepper__mobile__step__1__container__lock
+                      )}
+                    >
+                      { activeStep !== 1 ?  <LockIcon /> : <UnlockIcon />}
+                    </div>
+                    <span>Крок 1</span>
+                    <p>Доставка</p>
+                  </div>
+                  <div className={styles.wrapper__container__basket__products__stepper__mobile__step__1__line1}></div>
+                </div>
+                <div
+                  onClick={() => handleStepClick(2)}
+                  className={classNames(styles.wrapper__container__basket__products__stepper__mobile__step__1)}
+                >
+                  <div
+                    className={classNames(
+                      styles.wrapper__container__basket__products__stepper__mobile__step__1__container,
+                      {
+                        [styles['wrapper__container__basket__products__stepper__mobile__step__1__container__active']]:
+                          activeStep === 2,
+                      }
+                    )}
+                  >
+                    <div
+                      className={classNames(
+                        styles.wrapper__container__basket__products__stepper__mobile__step__1__container__lock
+                      )}
+                    >
+                      { activeStep !== 2 ?  <LockIcon /> : <UnlockIcon />}
+                    </div>
+                    <span>Крок 2</span>
+                    <p>Оплата</p>
+                  </div>
+                  <div className={styles.wrapper__container__basket__products__stepper__mobile__step__1__line2}></div>
+                </div>
+                <div
+                  onClick={() => handleStepClick(3)}
+                  className={classNames(styles.wrapper__container__basket__products__stepper__mobile__step__3)}
+                >
+                  <div
+                    className={classNames(
+                      styles.wrapper__container__basket__products__stepper__mobile__step__3__container,
+                      {
+                        [styles['wrapper__container__basket__products__stepper__mobile__step__3__container__active']]:
+                          activeStep === 3,
+                      }
+                    )}
+                  >
+                    <div
+                      className={classNames(
+                        styles.wrapper__container__basket__products__stepper__mobile__step__1__container__lock
+                      )}
+                    >
+                      { activeStep !== 3 ?  <LockIcon /> : <UnlockIcon />}
+                    </div>
+                    <span>Крок 3</span>
+                    <p>Особисті дані</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className={styles.wrapper__container__basket__products__stepper__container}>
               {activeStep === 1 && (
