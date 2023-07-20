@@ -6,7 +6,17 @@ import 'react-alice-carousel/lib/alice-carousel.css'
 
 import { useResponsive } from 'hooks'
 import { Button, Card, Comment, Title } from 'components'
-import { ArrowRIghtIcon, CartPlusIcon, CommentIcon, CopyIcon, DeliveryIcon, HLogoIcon, TGIcon } from 'assets'
+import {
+  ArrowRIghtIcon,
+  CartPlusIcon,
+  CommentIcon,
+  CopyIcon,
+  DeliveryIcon,
+  HLogoIcon,
+  MenuLeftIcon,
+  MenuRightIcon,
+  TGIcon,
+} from 'assets'
 
 import { storeItems } from './utils'
 import { itemData } from 'utils/shared/itemsData'
@@ -51,7 +61,7 @@ const Product: FC = () => {
       >
         <p className={styles.store__item__store_number}>{element.numberOfStore}</p>
 
-       <p className={styles.store__item__number_items}>({element.numberOfItems} шт ) </p>
+        <p className={styles.store__item__number_items}>({element.numberOfItems} шт ) </p>
       </div>
     ) : null
   )
@@ -76,17 +86,35 @@ const Product: FC = () => {
     </div>
   ))
 
+  const CustomNextButton = () => (
+    <div className={classNames(styles.slider__custom__next__button, styles.slider__custom__buttons)}>
+      <MenuLeftIcon />
+    </div>
+  )
+
+  const CustomPrevButton = () => (
+    <div className={classNames(styles.slider__custom__prev__button, styles.slider__custom__buttons)}>
+      <MenuRightIcon />
+    </div>
+  )
+
   return (
     <section className={styles.wrapper}>
       <h3 className={styles.wrapper__routes}>
-        Каталог товарів  <span>/</span>Військторг<span>/</span> Тактичне взуття <span>/</span>
+        Каталог товарів <span>/</span>Військторг<span>/</span> Тактичне взуття <span>/</span>
         <span className={styles.wrapper__routes__last}>Тактичні кросівки scooter</span>
       </h3>
 
       <div className={styles.wrapper__container}>
         <div className={styles.wrapper__container__top}>
           <div className={styles.wrapper__container__slider}>
-            <AliceCarousel ref={carouselRef} items={sliderItems} mouseTracking />
+            <AliceCarousel
+              ref={carouselRef}
+              renderPrevButton={() => <CustomPrevButton />}
+              renderNextButton={() => <CustomNextButton />}
+              items={sliderItems}
+              mouseTracking
+            />
 
             {!isTablet && <div className={styles.wrapper__container__slider__bottom}>{renderSliderBottom}</div>}
           </div>
