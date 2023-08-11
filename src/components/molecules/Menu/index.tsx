@@ -1,97 +1,68 @@
-import { type FC, useState, useEffect, useRef } from 'react'
+import { type FC, useState, useRef } from 'react'
 import classNames from 'classnames'
 
-import { uniqueId } from 'lodash'
-import { useLockBodyScroll, useOnClickOutside } from 'hooks'
 import { ArrowRIghtIcon, CloseIcon, ListIcon } from 'assets'
 
-import { catalogueData, catalogueItem } from './utils'
 import styles from './Menu.module.scss'
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
+import { fetchCategoryTreeData } from 'store/features/Category/categorySlice'
 
 const Menu: FC = () => {
   const [droped, setDroped] = useState<boolean>(false)
-  const [renderItem1, setRenderItem1] = useState<any>()
   const [renderItem2, setRenderItem2] = useState<any>()
-  const [renderItem3, setRenderItem3] = useState<any>()
-  const [catalogNumber, setCatalogNumber] = useState<number>(0)
-
-  const handleDropping = () => setDroped(!droped)
-
-  const handleCatalogNumberChanging = (id: number) => setCatalogNumber(id)
-
   const ref = useRef(null)
 
-  useOnClickOutside(ref, () => setDroped(false))
-  useLockBodyScroll(!droped)
+  const dispatch = useAppDispatch()
+  const { categoryTree } = useAppSelector(state => state)
+  const catalogItems = categoryTree.data ? categoryTree.data : []
+  const [activeCategory, setActiveCategory] = useState<string | null>(null); // Track active category
 
-  const renderCatalogItem = catalogueItem.map(({ Icon, text }, index) => (
+
+  const handleDropping = () => {
+    dispatch(fetchCategoryTreeData())
+    setDroped(true)
+    console.log(categoryTree.data)
+  }
+
+  const handleDroppingClose = () => {
+    setDroped(false)
+  }
+
+  const handleMouseOverCategory = (category: any) => {
+    setRenderItem2(category.childrens)
+    setActiveCategory(category.id); 
+
+  }
+
+  const renderCatalogItem = catalogItems.map((element: any, index: number) => (
     <div
-      key={uniqueId()}
-      onMouseOver={() => handleCatalogNumberChanging(index)}
+      key={index}
       className={classNames(styles.wrapper__dropdown__left__item, {
-        [styles.wrapper__dropdown__left__item__active]: index === catalogNumber,
+        [styles.wrapper__dropdown__left__item__active]: activeCategory === element.id, 
       })}
+      onMouseOver={() => handleMouseOverCategory(element)}
     >
       <div>
-        <Icon />
-
-        <p className={styles.wrapper__dropdown__left__item__text}>{text}</p>
+        <img  src={element.icon} />
+        <p className={styles.wrapper__dropdown__left__item__text}>{element.name}</p>
       </div>
-
       <ArrowRIghtIcon />
     </div>
   ))
 
-  useEffect(() => {
-    catalogueData.map((element, index, array) => {
-      setRenderItem1(
-        array[catalogNumber][0].map(({ text, isRed }) => (
-          <p
-            key={uniqueId()}
-            className={classNames(styles.wrapper__dropdown__right__text, {
-              [styles.wrapper__dropdown__right__text__red]: isRed,
-            })}
-          >
-            {text}
-          </p>
-        ))
-      )
-
-      setRenderItem2(
-        array[catalogNumber][1].map(({ text, isRed }) => (
-          <p
-            key={uniqueId()}
-            className={classNames(styles.wrapper__dropdown__right__text, {
-              [styles.wrapper__dropdown__right__text__red]: isRed,
-            })}
-          >
-            {text}
-          </p>
-        ))
-      )
-
-      setRenderItem3(
-        array[catalogNumber][2].map(({ text, isRed }) => (
-          <p
-            key={uniqueId()}
-            className={classNames(styles.wrapper__dropdown__right__text, {
-              [styles.wrapper__dropdown__right__text__red]: isRed,
-            })}
-          >
-            {text}
-          </p>
-        ))
-      )
-    })
-  }, [catalogNumber])
-
   return (
     <div className={styles.wrapper}>
-      <button onClick={handleDropping} className={styles.wrapper__catalog}>
-        {droped ? <CloseIcon /> : <ListIcon />}
-
-        <p>Каталог</p>
-      </button>
+      {droped ? (
+        <button ref={ref} onClick={handleDroppingClose} className={styles.wrapper__catalog}>
+          <CloseIcon />
+          <p>Каталог</p>
+        </button>
+      ) : (
+        <button ref={ref} onClick={handleDropping} className={styles.wrapper__catalog}>
+          <ListIcon />
+          Каталог
+        </button>
+      )}
 
       <div className={classNames(styles.wrapper__container, { [styles.wrapper__dropdown__droped]: droped })}>
         <div ref={ref} className={styles.wrapper__dropdown}>
@@ -102,11 +73,17 @@ const Menu: FC = () => {
           </div>
 
           <div className={styles.wrapper__dropdown__right}>
-            <div className={styles.wrapper__dropdown__right__item}>{renderItem1}</div>
-
-            <div className={styles.wrapper__dropdown__right__item}>{renderItem2}</div>
-
-            <div className={styles.wrapper__dropdown__right__item}>{renderItem3}</div>
+            <div className={styles.wrapper__dropdown__right__item}>
+              {renderItem2 &&
+                renderItem2.map((data: any, index: number) => (
+                  <div key={index}>
+                    <h1 style={{ color: '#ab0000', fontWeight: 400 }}>{data.name}</h1>
+                    {data.childrens?.map((child: any, index: number) => (
+                      <h1 key={index}>{child.name}</h1>
+                    ))}
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </div>

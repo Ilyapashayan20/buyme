@@ -1,34 +1,51 @@
-import type { FC } from 'react'
-
+import React, { FC, useEffect } from 'react'
 import { ProductBasket, ToOrder } from 'components'
-import { productsBasketData } from 'components/molecules/ProductBasket/utils'
-
 import styles from './Basket.module.scss'
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
+import { fetchBasketList } from 'store/features/Basket/basketSlice'
 
 const Basket: FC = () => {
-  const renderProductsBasket = productsBasketData.map((element, index) => (
-    <ProductBasket product={element} key={index} />
+  const dispatch = useAppDispatch()
+  const { basketSlice } = useAppSelector(state => state)
+
+  const productsBasketData = basketSlice.data ? basketSlice.data.data : []
+
+  useEffect(() => {
+    dispatch(fetchBasketList())
+  }, [dispatch])
+
+  const renderProductsBasket = productsBasketData?.map((element: any, index: any) => (
+    <ProductBasket data={element} key={index} />
   ))
 
   return (
     <section className={styles.wrapper}>
-      <div className={styles.wrapper__container}>
-        <h1 className={styles.wrapper__container__title}>Кошик</h1>
+      {basketSlice.loading ? (
+        <p style={{ textAlign: 'center' }}>Loading...</p>
+      ) : (
+        <div className={styles.wrapper__container}>
+          {productsBasketData?.length > 0 ? (
+            <>
+              {' '}
+              <h1 className={styles.wrapper__container__title}>Кошик</h1>
+              <div className={styles.wrapper__container__basket}>
+                <div className={styles.wrapper__container__basket__products}>
+                  <header className={styles.wrapper__container__basket__products__header}>
+                    <p>Товар</p>
+                    <p>Загальна сума</p>
+                  </header>
 
-        <div className={styles.wrapper__container__basket}>
-          <div className={styles.wrapper__container__basket__products}>
-            <header className={styles.wrapper__container__basket__products__header}>
-              <p>Товар</p>
+                  <div>{renderProductsBasket}</div>
+                </div>
 
-              <p>Загальна сума</p>
-            </header>
-
-            <div>{renderProductsBasket}</div>
-          </div>
-
-          <ToOrder />
+                <ToOrder data={basketSlice.data} />
+              </div>
+            </>
+          ) : (
+            <p style={{ textAlign: 'center' }}>Кошик спостереження порожній.</p>
+          )}
         </div>
-      </div>
+      )}
     </section>
   )
 }

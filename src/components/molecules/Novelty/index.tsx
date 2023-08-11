@@ -1,31 +1,47 @@
 import type { FC } from 'react'
-
-import { itemData } from 'utils/shared/itemsData'
 import { Title, Card, Button } from 'components'
-
 import styles from './Novelty.module.scss'
+import { Link } from 'react-router-dom'
 
-const Novelty: FC = () => {
+const Novelty: FC<any> = ({ data }) => {
+
   const subtitle = `Інтернет-магазин BuyMe — це доступні ціни та широкий асортимент товарів зі щоденним оновленням`
 
-  const renderItems = itemData.map((element, index) => (
+  const renderItems = data.data.map((element: any, index: number) => (
+    <div>
+      <button>add watchlist</button>
+
+    {/* <Link to={`/product/${element.id}`} > */}
+
     <Card
       key={index}
-      image={element.image}
-      title={element.title}
-      rate={element.rate}
+      id={element.product_id}
+      image={element.thumb}
+      title={element.name}
+      rate={element.special}
       reviwers={element.reviwers}
       price={element.price}
+
     />
+
+    {/* </Link> */}
+    </div>
   ))
 
   return (
     <div className={styles.wrapper}>
       <Title title='Новинки' subtitle={subtitle} />
 
-      <div className={styles.wrapper__content}>{renderItems}</div>
-
-      <Button className={styles.wrapper__button}>Дивитися усі</Button>
+      {data.loading ? (
+        <p>loading...</p>
+      ) : (
+        <>
+          <div className={styles.wrapper__content}>{renderItems}</div>
+          <Link to='/app/categories'>
+            <Button className={styles.wrapper__button}>Дивитися усі</Button>
+          </Link>
+        </>
+      )}
     </div>
   )
 }

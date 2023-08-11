@@ -1,24 +1,27 @@
 import type { FC } from 'react'
 
 import { Title, Card, Button } from 'components'
-import { promotionItemsData } from 'utils/shared/promotionItemsData'
 
 import styles from './Promotions.module.scss'
+import { Link } from 'react-router-dom'
 
-const Novelty: FC = () => {
+const Novelty: FC<any> = ({ data }) => {
   const subtitle = `Інтернет-магазин BuyMe регулярно проводить масштабний розпродаж товарів. Інколи знижки сягають 75% на одяг, електроніку та інші товари`
 
-  const renderItems = promotionItemsData.map((element, index) => (
-    <Card
-      key={index}
-      image={element.image}
-      title={element.title}
-      rate={element.rate}
-      reviwers={element.reviwers}
-      price={element.price}
-      promotion={element.promotion}
-      oldPrice={element.oldPrice}
-    />
+
+
+
+  const renderItems = data.data.map((element: any, index: number) => (
+    <Link to={`/product/${element.id}`} >
+      <Card
+        key={index}
+        image={element.thumb}
+        title={element.name}
+        rate={element.special}
+        reviwers={element.reviwers}
+        price={element.price}
+      />
+      </Link>
   ))
 
   return (
@@ -26,8 +29,9 @@ const Novelty: FC = () => {
       <Title title='Акції' subtitle={subtitle} />
 
       <div className={styles.wrapper__content}>{renderItems}</div>
-
-      <Button className={styles.wrapper__button}>Дивитися усі</Button>
+      <Link to='app/categories'>
+        <Button className={styles.wrapper__button}>Дивитися усі</Button>
+      </Link>
     </div>
   )
 }

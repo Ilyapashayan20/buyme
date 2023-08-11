@@ -1,25 +1,34 @@
 import { type FC, useState, useCallback } from 'react'
 
-import { CheckedIcon, HeartIcon, HeartIcon1, NotCheckedIcon } from 'assets'
+import {  HeartIcon, HeartIcon1 } from 'assets'
 import { Button, RatingStars } from 'components'
 
 import type { TCardProps } from './types'
 import styles from './Card.module.scss'
 import { useResponsive } from 'hooks'
+import { useAppDispatch } from 'hooks/useTypedSelector'
+import { addWatchList, removeWatchList } from 'store/features/Watchlist/watchListSlice'
 
-const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, oldPrice, isCheck = false }) => {
+const Card: FC<TCardProps> = ({ id,image, title, rate, reviwers, price, promotion, oldPrice, isCheck = false, saved},) => {
   const { isTablet } = useResponsive()
 
-  const [isLiked, setLiked] = useState<boolean>(false)
-  const [isChecked, setIsChecked] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
+  const [isLiked, setLiked] = useState(saved)
 
   const onLikeClickCallback = useCallback(() => {
-    setLiked(!isLiked)
-  }, [isLiked])
+    const updatedIsLiked = !isLiked; 
+    setLiked(updatedIsLiked);
 
-  const onCheckClickCallback = useCallback(() => {
-    setIsChecked(!isChecked)
-  }, [isChecked])
+    if(updatedIsLiked === true) {
+      dispatch(addWatchList(id))
+      console.log('like')
+    }else{
+      console.log('unlike')
+      dispatch(removeWatchList(id))
+    }
+  
+  }, [isLiked]);
+
 
   const renderHeartIcon = isLiked ? (
     <HeartIcon role='button' onClick={onLikeClickCallback} className={styles.wrapper__like} />
@@ -27,11 +36,9 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
     <HeartIcon1 role='button' onClick={onLikeClickCallback} className={styles.wrapper__like} />
   )
 
-  const renderCheckedIcon = isChecked ? (
-    <CheckedIcon role='button' onClick={onCheckClickCallback} className={styles.wrapper__check} />
-  ) : (
-    <NotCheckedIcon role='button' onClick={onCheckClickCallback} className={styles.wrapper__check} />
-  )
+  const renderCheckedIcon = (
+    <button></button>
+  ) 
 
   return (
     <div className={styles.wrapper}>
@@ -39,7 +46,7 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
 
       {!isCheck ? !isTablet && renderHeartIcon : renderCheckedIcon}
 
-      <div className={styles.wrapper__description}>
+      <div  className={styles.wrapper__description}>
         {!!promotion ? (
           <div className={styles.wrapper__new}>{promotion} %</div>
         ) : (
@@ -55,10 +62,10 @@ const Card: FC<TCardProps> = ({ image, title, rate, reviwers, price, promotion, 
         </div>
 
         {!promotion ? (
-          <p className={styles.wrapper__price}>{price} ₴ / дроп ціна</p>
+          <p className={styles.wrapper__price}>{price}  / дроп ціна</p>
         ) : (
           <p className={styles.wrapper__price__promotion}>
-            {price} ₴ <span className={styles.wrapper__price__old}>{oldPrice}</span>
+            {price}  <span className={styles.wrapper__price__old}>{oldPrice}</span>
           </p>
         )}
 

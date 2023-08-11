@@ -5,18 +5,22 @@ import { Button, RatingStars } from 'components'
 
 import styles from './ProductItem.module.scss'
 
-const ProductItem: FC = () => (
+
+const ProductItem: FC <any> = ({data}) => {
+
+
+return(
   <div className={styles.wrapper}>
     <div className={styles.wrapper__image}>
-      <img width='580px' height='624px' alt='soldier' src='images/soldierSecond.png' />
+      <img width='580px' height='624px' alt='soldier' src={data.table_size} />
     </div>
 
     <div className={styles.wrapper__description}>
-      <h3 className={styles.wrapper__description__title}>Тактичний костюм idoger G3</h3>
+      <h3 className={styles.wrapper__description__title}>{data.name}</h3>
 
       <RatingStars rate={4} isRed className={styles.wrapper__description__stars} />
 
-      <h4 className={styles.wrapper__description__price}>799 ₴ / дроп ціна</h4>
+      <h4 className={styles.wrapper__description__price}>{data.price} ₴ / дроп ціна</h4>
 
       <p className={styles.wrapper__description__text}>
         Костюм складається з сорочки Ubacs та штанів. До комплекту також входять запатентовані знімні наколінники
@@ -57,5 +61,6 @@ const ProductItem: FC = () => (
     </div>
   </div>
 )
+}
 
 export default ProductItem

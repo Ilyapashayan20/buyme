@@ -9,6 +9,7 @@
   padding: 0 14px;
   gap: 24px;
   @extend %flex-column;
+
   @media (max-width:$tablet-w) {
     margin: 240px auto;
   }
@@ -37,9 +38,38 @@
       color: $red;
     }
   }
+  &__input__wrapper {
+    gap: 6px;
+    @extend %flex-column;
+
+    &__lable {
+        color: #959595;
+        @extend %micro-2;
+    }
+
+    &__input {
+        border: 1px solid #95959533;
+        border-radius: 6px;
+        padding: 16px 24px;
+
+        &::placeholder {
+            color: #95959533;
+        }
+    }
+
+}
 }
 
 
-.wrapper__button{
+.wrapper__button {
   width: 100%;
+}
+
+.validationMessage {
+  color: #ab0000;
+}
+
+.invalidinput{
+  border: 1px solid #ab0000;
+
 }

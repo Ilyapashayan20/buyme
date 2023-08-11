@@ -11,12 +11,20 @@
   @extend %flex-column;
 
   &__head {
+
     width: 100%;
+    align-items: center;
     @extend %flex-justify-between;
+    @media (max-width: 600px) {
+      padding: 0  15px;
+    }
 
     &__title {
       @extend %heading-3;
       color: $black;
+      @media (max-width:600px) {
+        font-size: 20px;
+      }
     }
 
     &__subtitle {

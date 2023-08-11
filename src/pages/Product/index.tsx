@@ -1,4 +1,4 @@
-import { type FC, useRef } from 'react'
+import { type FC, useRef, useEffect } from 'react'
 
 import classNames from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
@@ -18,61 +18,133 @@ import {
   TGIcon,
 } from 'assets'
 
-import { storeItems } from './utils'
-import { itemData } from 'utils/shared/itemsData'
 import styles from './Product.module.scss'
+import { useParams } from 'react-router'
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
+import { fetchProductById } from 'store/features/Product/productSlice'
+import { fetchStockProductsData } from 'store/features/Product/productSlice'
+import { fetchProductReviewsById } from 'store/features/Product/productReviewsSlice'
+import { addBasket } from 'store/features/Basket/basketSlice'
 
-const Product: FC = () => {
+const Product: FC<any> = () => {
+  const dispatch = useAppDispatch()
+
+  const { productById, stockProducts, productReviews } = useAppSelector(state => state)
+
+
+  const product = productById.data
+  const filteredDescription = product.description?.replace(/<p>&nbsp;<\/p>/g, '')
+  const mainWarehouse = product?.allOptions?.[0]?.warehouses?.[0]?.options || []
+  const modifiedWarehouses = mainWarehouse.map((warehouse: any, index: number) => ({
+    ...warehouse,
+    isActive: index === 0,
+  }))
+
+  const AdditionalWarehouse = product?.allOptions?.[0]?.warehouses?.[0]?.options || []
+  const modifiedAdditionalWarehouses = AdditionalWarehouse.map((warehouse: any, index: number) => ({
+    ...warehouse,
+    isActive: index === 0,
+  }))
+
+
+
+  const { productId } = useParams()
+  const id = Number(productId)
+
+  const addProductBasket = () => {
+    const userDataString = localStorage.getItem('userData');
+    
+    if (userDataString) { 
+      const userData = JSON.parse(userDataString);
+  
+      const customerId = userData.customer_id;
+  
+      const payload = {
+        customer_id: customerId,
+        product_id: id, 
+        options: {
+          0: 81395,
+          1: 81396,
+          warehouse_id: 0,
+        },
+        quantity: 1,
+      };
+  
+      dispatch(addBasket(payload));
+    } else {
+      console.error('userData is not available in localStorage.');
+    }
+  };
+  
+  useEffect(() => {
+    dispatch(fetchProductById(id))
+    dispatch(fetchStockProductsData())
+    dispatch(fetchProductReviewsById(id))
+    window.scrollTo(0, 0)
+  }, [dispatch])
+
   const carouselRef = useRef<any>(null)
 
-  const renderCardItems = itemData.map((element, index) => (
-    <Card
-      key={index}
-      image={element.image}
-      title={element.title}
-      rate={element.rate}
-      reviwers={element.reviwers}
-      price={element.price}
-    />
+  const renderCardItems = stockProducts.data.map((element: any, index: number) => (
+    <a href={`/product/${element.id}`}>
+      <Card
+        key={index}
+        image={element.thumb}
+        title={element.name}
+        rate={element.special}
+        reviwers={element.reviwers}
+        price={element.price}
+      />
+    </a>
   ))
 
-  const renderStoreItems1 = storeItems.map((element, index) => (
+  const renderMainStoreItems = modifiedWarehouses.map((element: any, index: number) => (
     <div
       key={index}
       className={classNames(styles.store__item, {
         [styles.store__item__active]: element.isActive,
-        [styles.store__item__disabled]: element.isDisabled,
       })}
     >
-      <p className={styles.store__item__store_number}>{element.numberOfStore}</p>
+      <p className={styles.store__item__store_number} style={{ textAlign: 'center' }}>
+        {element.name}
+      </p>
 
-      <p className={styles.store__item__number_items}>({element.numberOfItems} шт)</p>
+      <p className={styles.store__item__number_items}>({element.quantity} шт)</p>
     </div>
   ))
 
-  const renderStoreItems2 = storeItems.map((element, index) =>
+  const renderAdditionalStoreItems = modifiedAdditionalWarehouses.map((element: any, index: number) =>
     index !== 0 ? (
       <div
         key={index}
         className={classNames(styles.store__item, {
           [styles.store__item__acitve]: element.isActive,
-          [styles.store__item__disabled]: element.isDisabled,
         })}
       >
-        <p className={styles.store__item__store_number}>{element.numberOfStore}</p>
+        <p className={styles.store__item__store_number} style={{ textAlign: 'center' }}>
+          {element.name}
+        </p>
 
-        <p className={styles.store__item__number_items}>({element.numberOfItems} шт ) </p>
+        <p className={styles.store__item__number_items}>({element.quantity} шт ) </p>
       </div>
     ) : null
   )
 
+  const renderProductReviews = productReviews.data.map((element:any, index:number)=>(
+    <Comment 
+    key={index}
+    name={element.author}
+    date={element.date}
+    rate={element.rating}
+    text={element.text}
+    />
+  ))
+
   const { isTablet } = useResponsive()
 
-  const sliderItems = [
-    <img src='images/boots.png' width='100%' height='100%' />,
-    <img src='images/boots.png' width='100%' height='100%' />,
-    <img src='images/boots.png' width='100%' height='100%' />,
-  ]
+  const sliderItems = product.image?.lenght> 0 ? product.image : Array(3).fill(
+    <img src={product.table_size} width='100%' height='100%' />,)
+
 
   const handleGoToClick = (slideIndex: number) => {
     if (carouselRef.current) {
@@ -80,7 +152,7 @@ const Product: FC = () => {
     }
   }
 
-  const renderSliderBottom = sliderItems.map((element, index) => (
+  const renderSliderBottom = sliderItems?.map((element: any, index: any) => (
     <div role='button' onClick={() => handleGoToClick(index)} className={classNames(styles.slider__bottom)} key={index}>
       {element}
     </div>
@@ -98,11 +170,13 @@ const Product: FC = () => {
     </div>
   )
 
-  return (
+  return productById.loading ? (
+    <p style={{ textAlign: 'center' }}>loading...</p>
+  ) : (
     <section className={styles.wrapper}>
       <h3 className={styles.wrapper__routes}>
         Каталог товарів <span>/</span>Військторг<span>/</span> Тактичне взуття <span>/</span>
-        <span className={styles.wrapper__routes__last}>Тактичні кросівки scooter</span>
+        <span className={styles.wrapper__routes__last}>{product.name}</span>
       </h3>
 
       <div className={styles.wrapper__container}>
@@ -120,16 +194,31 @@ const Product: FC = () => {
           </div>
 
           <div className={styles.wrapper__container__right}>
-            <h3 className={styles.wrapper__container__right__title}>Тактичні кросівки scooter</h3>
+            <h3 className={styles.wrapper__container__right__title}>{product.name}</h3>
 
-            <p className={styles.wrapper__container__right__code}>Код: 12031</p>
+            <p className={styles.wrapper__container__right__code}>Код: {product.model}</p>
 
             <p className={styles.wrapper__container__right__price}>
-              2990 ₴ <span className={styles.wrapper__container__right__price__old}>2990 ₴</span>
+              {product.special ? (
+                <>
+                  {product.special} {' '}
+                  <span className={styles.wrapper__container__right__price__old}>{product.price} </span>
+                </>
+              ) : (
+                <>{product.price} </>
+              )}
             </p>
 
             <pre className={styles.wrapper__container__right__in_store}>
-              2900 ₴ <span> Замовте 4 шт.</span>
+              {product.special ? (
+                <>
+                  {product.special}  <span> Замовте {product?.allOptions?.[0]?.warehouses?.[0]?.quantity} шт.</span>
+                </>
+              ) : (
+                <>
+                  {product.price}  <span> Замовте {product?.allOptions?.[0]?.warehouses?.[0]?.quantity} шт.</span>
+                </>
+              )}
             </pre>
 
             <div className={styles.wrapper__store}>
@@ -139,21 +228,25 @@ const Product: FC = () => {
                 {isTablet && <p className={styles.wrapper__store__subtitle}>Таблиця розмірів</p>}
               </div>
 
-              <div className={styles.store}>{renderStoreItems1}</div>
+              <div className={styles.store}>{renderMainStoreItems}</div>
 
               {!isTablet && <p className={styles.wrapper__store__subtitle}>Таблиця розмірів</p>}
             </div>
 
             <div className={styles.wrapper__store}>
               <div className={styles.wrapper__store__title_container}>
-                <h3 className={styles.wrapper__store__title}>Додатковий склад</h3>
+                {modifiedAdditionalWarehouses.length === 0 ? (
+                  <h3 className={styles.wrapper__store__title}>Додатковий склад</h3>
+                ) : (
+                  <></>
+                )}
               </div>
 
-              <div className={styles.store}>{renderStoreItems2}</div>
+              <div className={styles.store}>{renderAdditionalStoreItems}</div>
             </div>
 
             <div className={styles.wrapper__container__right__buttons}>
-              <Button LeftIcon={CartPlusIcon}>Додати в кошик</Button>
+              <Button onClick={addProductBasket} LeftIcon={CartPlusIcon}>Додати в кошик</Button>
 
               <Button isTransparent LeftIcon={TGIcon}>
                 Зв‘язатися з менеджером
@@ -164,20 +257,7 @@ const Product: FC = () => {
               <h3 className={styles.wrapper__container__description__title}>Опис</h3>
 
               <p className={styles.wrapper__container__description__text}>
-                - Натуральний нубук
-                <br />
-                -Має мембранну технологію
-                <br />
-                - Висока повітропроникність (захист від поту)
-                <br />
-                -Зносостійкий
-                <br />
-                - Маса ~1000 г
-                <br />
-                <br />
-                Технологія підошви з поліуретану та гуми подвійної щільності. М'яка та легка проміжна підошва, гумова
-                підошва з високим опором ковзанню. Завдяки спеціально розробленій базовій конструкції він забезпечує
-                чудову мобільність та стійкість користувачеві під час підйому по місцевості або подолання перешкод
+                <div dangerouslySetInnerHTML={{ __html: filteredDescription }} />
               </p>
 
               <Button isTransparent LeftIcon={CopyIcon}>
@@ -190,7 +270,7 @@ const Product: FC = () => {
                 <div className={styles.wrapper__container__footer__comments__head}>
                   <p className={styles.wrapper__container__footer__comments__head__title}>
                     <CommentIcon />
-                    Відгуки (2)
+                    Відгуки ({productReviews.data?.length})
                   </p>
 
                   <p className={styles.wrapper__container__footer__comments__head__link}>
@@ -199,26 +279,8 @@ const Product: FC = () => {
                 </div>
 
                 <div className={styles.wrapper__container__footer__comments__container}>
-                  <Comment
-                    name='Оксана'
-                    date='03.06.2023'
-                    rate={4}
-                    text='Актуальний опис та фото. Ціна відповідає якості. Рекомендую!'
-                  />
+                {productReviews.data.length > 0 && <> {renderProductReviews}</>}
 
-                  <Comment
-                    name='Оксана'
-                    date='03.06.2023'
-                    rate={4}
-                    text='Актуальний опис та фото. Ціна відповідає якості. Рекомендую!'
-                  />
-
-                  <Comment
-                    name='Оксана'
-                    date='03.06.2023'
-                    rate={4}
-                    text='Актуальний опис та фото. Ціна відповідає якості. Рекомендую!'
-                  />
                 </div>
               </div>
             </div>

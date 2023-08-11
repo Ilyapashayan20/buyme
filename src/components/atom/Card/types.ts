@@ -1,4 +1,5 @@
 export type TCardProps = {
+  id?: string
   image: string
   title: string
   rate: number
@@ -6,5 +7,7 @@ export type TCardProps = {
   price: number
   promotion?: number
   oldPrice?: number
-  isCheck?: boolean
+  isCheck?: boolean,
+  saved?:boolean,
+  onLikeClick?: any
 }

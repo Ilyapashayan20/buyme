@@ -1,14 +1,38 @@
-import type { FC } from 'react'
+import { FC, useState } from 'react';
+import styles from './Input.module.scss';
+import { TAuthInputProps } from './type';
 
-import type { TAuthInputProps } from './type'
-import styles from './Input.module.scss'
+const InputAuth: FC<TAuthInputProps> = ({ label, placeholder, type, validate }) => {
+  const [inputValue, setInputValue] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
-const InputAuth: FC<TAuthInputProps> = ({ label, placeholder, type }) => (
-  <div className={styles.wrapper}>
-    <label className={styles.wrapper__lable}>{label}</label>
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setInputValue(newValue);
+    setError(null);
+  };
 
-    <input className={styles.wrapper__input} type={type} placeholder={placeholder} />
-  </div>
-)
+  const handleBlur = () => {
+    if (validate) {
+      const validationError = validate(inputValue);
+      setError(validationError);
+    }
+  };
 
-export default InputAuth
+  return (
+    <div className={styles.wrapper}>
+      <label className={styles.wrapper__label}>{label}</label>
+      <input
+        className={`${styles.wrapper__input} ${error ? styles.error : ''}`}
+        type={type}
+        placeholder={placeholder}
+        value={inputValue}
+        onChange={handleInputChange}
+        onBlur={handleBlur}
+      />
+      {error && <p className={styles.error}>{error}</p>}
+    </div>
+  );
+};
+
+export default InputAuth;

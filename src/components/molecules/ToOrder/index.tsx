@@ -6,9 +6,10 @@ import InputAuth from 'components/atom/Input/Auth'
 import { PaintIcon } from 'assets'
 
 
-const ToOrder: FC = () => {
+const ToOrder: FC<any> = ({ data}) => {
   const location: any = useLocation()
   const isPlacing = location.pathname === '/placing'
+
 
   const [showOrder,setShowOrder] = useState(false)
 const handleClose = ()=>{
@@ -18,17 +19,14 @@ const handleClose = ()=>{
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper__prices}>
+
         <div>
           <p>Вартість замовлення</p>
-          <span>12 784 грн</span>
-        </div>
-        <div>
-          <p>Вартість замовлення</p>
-          <span>12 784 грн</span>
+          <span>{data.total_format}</span>
         </div>
         <div className={styles.wrapper__prices__footer}>
           <p>До оплати без доставки</p>
-          <span>13 584 грн</span>
+          <span>{data.total_format}</span>
         </div>
       </div>
       <div className={styles.wrapper__buttons}>

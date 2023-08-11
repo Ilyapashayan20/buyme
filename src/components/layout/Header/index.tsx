@@ -14,7 +14,7 @@ import { ERoutePaths } from 'router/types'
 const Header: FC = () => {
   const [showAuthModal, setShowAuthModal] = useState(false)
   const openModal = () => {
-    setShowAuthModal(true)
+    // setShowAuthModal(true)
   }
 
   const closeModal = () => {
@@ -100,11 +100,11 @@ const Header: FC = () => {
                 <p>Кошик</p>
               </NavLink>
 
-              <div role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
+              <Link to='/login' role='button' onClick={openModal} className={styles.wrapper__icons_group__item}>
                 <UserIcon />
 
                 <p>Увійти</p>
-              </div>
+              </Link>
             </div>
           </>
         )}

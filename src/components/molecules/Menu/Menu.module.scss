@@ -67,7 +67,11 @@
 
       &__item {
         gap: 10px;
-        @extend %flex-column;
+        display: flex;
+        div{
+          min-width: 247px;
+          max-width: 247px;
+        }
 
         &:first-child {
           margin-top: 0;
@@ -117,6 +121,10 @@
         > div {
           gap: 12px;
           @extend %flex-align;
+          img{
+            width: 24px;
+            height: 24px;
+          }
         }
 
         &__text {
