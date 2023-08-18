@@ -138,6 +138,7 @@
         display: flex;
         gap: 8px;
         margin-top: 24px;
+        flex-wrap: wrap;
       }
 
       img {
@@ -167,6 +168,7 @@
 
       &__title {
         color: $black-600;
+        word-break: break-word;
         @extend %heading-5;
 
         @media (max-width: $tablet) {
@@ -272,6 +274,7 @@
     &__disabled {
       color: rgba(149, 149, 149, 0.5);
     }
+
   }
 }
 
@@ -311,6 +314,11 @@
     height: 76px;
     cursor: pointer;
     transition: 0.3s;
+    img{
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+    }
 
     &__active,
     &:hover {

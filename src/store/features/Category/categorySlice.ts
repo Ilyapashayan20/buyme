@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import api from 'api/axiosConfig'
 import { TCategory } from './type'
 
+
 const initialState: TCategory = {
   data: [],
   loading: false,
@@ -21,7 +22,7 @@ export const fetchCategoryData = createAsyncThunk('category/fetchCategoryData', 
 
 export const fetchCategoryTreeData  = createAsyncThunk('category/fetchCategoryTreeData', async () => {
   try {
-    const response = await api.get('/v1/categories/tree')
+    const response = await api.get(`/v1/categories/tree?parent_id=${process.env.REACT_APP_CATEGORY_ID}`)
 
     return response.data
     

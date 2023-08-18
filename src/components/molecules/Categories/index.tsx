@@ -10,6 +10,8 @@ const Categories: FC  <any>= ({data}) => {
   const subtitle = `В онлайн-каталозі BuyMe представлено близько 100 000 найменувань одягу, електроніки, меблів та інших товарів для усіх сфер життя`
 
   const renderCategories = data.data.map((element: any, index: number) => (
+    
+    <Link to={`/app/categories?category_id=${element.id}`} >
     <div className={styles.wrapper__item} key={index}>
       <div className={styles.wrapper__item__image_container}>
         <img src={element.thumb_large} alt='category' width='100%' height='100%' />
@@ -17,6 +19,7 @@ const Categories: FC  <any>= ({data}) => {
 
       <p className={styles.wrapper__title}>{element.name}</p>
     </div>
+    </Link>
   ))
 
   return (
@@ -29,7 +32,7 @@ const Categories: FC  <any>= ({data}) => {
         <>
           <div className={styles.wrapper__content}>{renderCategories}</div>
 
-          <Link to='/app/categories'>
+          <Link to='/categories'>
             <Button>Дивитися усі</Button>
           </Link>
         </>

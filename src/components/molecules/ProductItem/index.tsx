@@ -4,6 +4,7 @@ import { CheckedIcon } from 'assets'
 import { Button, RatingStars } from 'components'
 
 import styles from './ProductItem.module.scss'
+import { Link } from 'react-router-dom'
 
 
 const ProductItem: FC <any> = ({data}) => {
@@ -12,7 +13,7 @@ const ProductItem: FC <any> = ({data}) => {
 return(
   <div className={styles.wrapper}>
     <div className={styles.wrapper__image}>
-      <img width='580px' height='624px' alt='soldier' src={data.table_size} />
+      <img width='580px' height='624px' alt='soldier' src={data.images?.[0].thumb} />
     </div>
 
     <div className={styles.wrapper__description}>
@@ -57,7 +58,7 @@ return(
         </div>
       </div>
 
-      <Button className={styles.wrapper__description__button}>Купити</Button>
+     <Link to={`/product/${data.product_id}`} >  <Button className={styles.wrapper__description__button}>Купити</Button> </Link>
     </div>
   </div>
 )

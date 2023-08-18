@@ -9,7 +9,6 @@ const Novelty: FC<any> = ({ data }) => {
 
   const renderItems = data.data.map((element: any, index: number) => (
     <div>
-      <button>add watchlist</button>
 
     {/* <Link to={`/product/${element.id}`} > */}
 
@@ -37,7 +36,7 @@ const Novelty: FC<any> = ({ data }) => {
       ) : (
         <>
           <div className={styles.wrapper__content}>{renderItems}</div>
-          <Link to='/app/categories'>
+          <Link to="/app/categories">
             <Button className={styles.wrapper__button}>Дивитися усі</Button>
           </Link>
         </>

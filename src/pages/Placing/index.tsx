@@ -1,13 +1,25 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styles from './Placing.module.scss'
 import { Button, ToOrder } from 'components'
 import classNames from 'classnames'
 import { ArrowBottomIcon, LockIcon, UnlockIcon } from 'assets'
 import { useResponsive } from 'hooks'
+import { fetchBasketList } from 'store/features/Basket/basketSlice'
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
+import { Link } from 'react-router-dom'
 
 const Placing: FC = () => {
   const [activeStep, setActiveStep] = useState(1)
   const { isMobile } = useResponsive()
+
+  const dispatch = useAppDispatch()
+  const { basketSlice } = useAppSelector(state => state)
+
+  const productsBasketData = basketSlice.data ? basketSlice.data.data : []
+
+  useEffect(() => {
+    dispatch(fetchBasketList())
+  }, [dispatch])
 
   const handleStepClick = (index: number) => {
     setActiveStep(index)
@@ -22,21 +34,25 @@ const Placing: FC = () => {
             <header className={styles.wrapper__container__basket__products__header}>
               <p>Ваше замовлення</p>
             </header>
-            <div className={styles.wrapper__container__basket__products__product}>
-              <div>
-                {!isMobile ? (
-                  <img width='143px' height='158px' alt='soldier' src='images/soldierSecond.png' />
-                ) : (
-                  <img width='64px' height='64px' alt='soldier' src='images/soldierSecond.png' />
-                )}
-              </div>
-              <div className={styles.wrapper__container__basket__products__product__info}>
-                <p className={styles.wrapper__container__basket__products__product__info__title}>
-                  Армійський костюм defender (МЛ-847) 26-1
-                </p>
-                <p className={styles.wrapper__container__basket__products__product__info__quantity}>Ще 3 товари</p>
-                <p className={styles.wrapper__container__basket__products__product__info__price}>799 ₴ / дроп</p>
-              </div>
+            <div>
+              {productsBasketData?.map((element: any, index: any) => (
+                <div   key={index} className={styles.wrapper__container__basket__products__product}>
+                  <div>
+                    {!isMobile ? (
+                      <img width='143px' height='158px' alt='soldier' src={element.product.thumb_large} />
+                    ) : (
+                      <img width='64px' height='64px' alt='soldier' src={element.product.thumb_large} />
+                    )}
+                  </div>
+                  <div className={styles.wrapper__container__basket__products__product__info}>
+                  <Link to={`/product/${element.product.id}`} className={styles.wrapper__container__basket__products__product__info__title}>
+                      {element.product.name}
+                    </Link>
+                    <p className={styles.wrapper__container__basket__products__product__info__quantity}>Ще {element.quantity} товари</p>
+                    <p className={styles.wrapper__container__basket__products__product__info__price}>{element.product.price}</p>
+                  </div>
+                </div>
+              ))}
             </div>
             {!isMobile ? (
               <div className={styles.wrapper__container__basket__products__stepper}>
@@ -100,7 +116,7 @@ const Placing: FC = () => {
                         styles.wrapper__container__basket__products__stepper__mobile__step__1__container__lock
                       )}
                     >
-                      { activeStep !== 1 ?  <LockIcon /> : <UnlockIcon />}
+                      {activeStep !== 1 ? <LockIcon /> : <UnlockIcon />}
                     </div>
                     <span>Крок 1</span>
                     <p>Доставка</p>
@@ -125,7 +141,7 @@ const Placing: FC = () => {
                         styles.wrapper__container__basket__products__stepper__mobile__step__1__container__lock
                       )}
                     >
-                      { activeStep !== 2 ?  <LockIcon /> : <UnlockIcon />}
+                      {activeStep !== 2 ? <LockIcon /> : <UnlockIcon />}
                     </div>
                     <span>Крок 2</span>
                     <p>Оплата</p>
@@ -150,7 +166,7 @@ const Placing: FC = () => {
                         styles.wrapper__container__basket__products__stepper__mobile__step__1__container__lock
                       )}
                     >
-                      { activeStep !== 3 ?  <LockIcon /> : <UnlockIcon />}
+                      {activeStep !== 3 ? <LockIcon /> : <UnlockIcon />}
                     </div>
                     <span>Крок 3</span>
                     <p>Особисті дані</p>
@@ -237,7 +253,7 @@ const Placing: FC = () => {
               )}
             </div>
           </div>
-          {!isMobile && <ToOrder />}
+          {!isMobile && <ToOrder data={basketSlice.data} />}
         </div>
       </div>
     </section>

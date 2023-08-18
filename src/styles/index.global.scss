@@ -6,3 +6,19 @@
 @import './colors.scss';
 @import './mixins.scss';
 @import './typography.scss';
+
+
+.list_quality{
+    position: absolute;
+    background-color: $red;
+    border-radius: 100%;
+    width: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    right: 0;
+    color: white;
+    top: -9px;
+  }

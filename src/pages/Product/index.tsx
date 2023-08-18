@@ -1,4 +1,4 @@
-import { type FC, useRef, useEffect } from 'react'
+import { type FC, useRef, useEffect, useState } from 'react'
 
 import classNames from 'classnames'
 import AliceCarousel from 'react-alice-carousel'
@@ -24,13 +24,12 @@ import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
 import { fetchProductById } from 'store/features/Product/productSlice'
 import { fetchStockProductsData } from 'store/features/Product/productSlice'
 import { fetchProductReviewsById } from 'store/features/Product/productReviewsSlice'
-import { addBasket } from 'store/features/Basket/basketSlice'
+import { addBasket, fetchBasketList } from 'store/features/Basket/basketSlice'
 
 const Product: FC<any> = () => {
   const dispatch = useAppDispatch()
 
   const { productById, stockProducts, productReviews } = useAppSelector(state => state)
-
 
   const product = productById.data
   const filteredDescription = product.description?.replace(/<p>&nbsp;<\/p>/g, '')
@@ -46,36 +45,43 @@ const Product: FC<any> = () => {
     isActive: index === 0,
   }))
 
-
-
   const { productId } = useParams()
   const id = Number(productId)
 
   const addProductBasket = () => {
-    const userDataString = localStorage.getItem('userData');
-    
-    if (userDataString) { 
-      const userData = JSON.parse(userDataString);
+    const userDataString = localStorage.getItem('userData')
   
-      const customerId = userData.customer_id;
+    if (userDataString) {
+      const userData = JSON.parse(userDataString)
+  
+      const customerId = userData.customer_id
   
       const payload = {
         customer_id: customerId,
-        product_id: id, 
+        product_id: id,
         options: {
           0: 81395,
           1: 81396,
           warehouse_id: 0,
         },
         quantity: 1,
-      };
+      }
   
-      dispatch(addBasket(payload));
+      dispatch(addBasket(payload))
+        .then((action) => {
+          if (addBasket.fulfilled.match(action)) {
+            dispatch(fetchBasketList())
+          }
+        })
+        .catch((error) => {
+          console.error('An error occurred while adding to the basket:', error);
+        });
     } else {
       console.error('userData is not available in localStorage.');
     }
   };
   
+
   useEffect(() => {
     dispatch(fetchProductById(id))
     dispatch(fetchStockProductsData())
@@ -86,24 +92,44 @@ const Product: FC<any> = () => {
   const carouselRef = useRef<any>(null)
 
   const renderCardItems = stockProducts.data.map((element: any, index: number) => (
-    <a href={`/product/${element.id}`}>
-      <Card
-        key={index}
-        image={element.thumb}
-        title={element.name}
-        rate={element.special}
-        reviwers={element.reviwers}
-        price={element.price}
-      />
-    </a>
+    <Card
+      key={index}
+      id={element.id}
+      image={element.thumb}
+      title={element.name}
+      rate={element.special}
+      reviwers={element.reviwers}
+      price={element.price}
+    />
   ))
+
+  const [selectedMainStoreIndex, setSelectedMainStoreIndex] = useState<number | null>(null)
+
+  const handleMainStoreItemClick = (index: number) => {
+    setSelectedMainStoreIndex(index)
+  }
+
+  const [selectedAdditionalStoreIndex, setSelectedAdditionalStoreIndex] = useState<number | null>(null)
+
+  const handleAdditionalStoreItemClick = (index: number) => {
+    setSelectedAdditionalStoreIndex(index)
+  }
 
   const renderMainStoreItems = modifiedWarehouses.map((element: any, index: number) => (
     <div
       key={index}
       className={classNames(styles.store__item, {
-        [styles.store__item__active]: element.isActive,
+        [styles.store__item__active]: selectedMainStoreIndex === index,
       })}
+      style={{
+        opacity: element.quantity === 0 ? 0.6 : 1,
+        cursor: element.quantity === 0 ? 'not-allowed' : 'pointer',
+      }}
+      onClick={() => {
+        if (element.quantity !== 0) {
+          handleMainStoreItemClick(index)
+        }
+      }}
     >
       <p className={styles.store__item__store_number} style={{ textAlign: 'center' }}>
         {element.name}
@@ -118,33 +144,38 @@ const Product: FC<any> = () => {
       <div
         key={index}
         className={classNames(styles.store__item, {
-          [styles.store__item__acitve]: element.isActive,
+          [styles.store__item__active]: selectedAdditionalStoreIndex === index,
         })}
+        style={{
+          opacity: element.quantity === 0 ? 0.6 : 1,
+          cursor: element.quantity === 0 ? 'not-allowed' : 'pointer',
+        }}
+        onClick={() => {
+          if (element.quantity !== 0) {
+            handleAdditionalStoreItemClick(index)
+          }
+        }}
       >
         <p className={styles.store__item__store_number} style={{ textAlign: 'center' }}>
           {element.name}
         </p>
 
-        <p className={styles.store__item__number_items}>({element.quantity} шт ) </p>
+        <p className={styles.store__item__number_items}>({element.quantity} шт)</p>
       </div>
     ) : null
   )
 
-  const renderProductReviews = productReviews.data.map((element:any, index:number)=>(
-    <Comment 
-    key={index}
-    name={element.author}
-    date={element.date}
-    rate={element.rating}
-    text={element.text}
-    />
+  const renderProductReviews = productReviews.data.map((element: any, index: number) => (
+    <Comment key={index} name={element.author} date={element.date} rate={element.rating} text={element.text} />
   ))
 
   const { isTablet } = useResponsive()
 
-  const sliderItems = product.image?.lenght> 0 ? product.image : Array(3).fill(
-    <img src={product.table_size} width='100%' height='100%' />,)
+  // slideritem
 
+  const sliderItems = product?.images?.map((image: any, index: number) => (
+    <img key={index} src={image.thumb} alt={`Image ${index}`} />
+  ))
 
   const handleGoToClick = (slideIndex: number) => {
     if (carouselRef.current) {
@@ -175,7 +206,7 @@ const Product: FC<any> = () => {
   ) : (
     <section className={styles.wrapper}>
       <h3 className={styles.wrapper__routes}>
-        Каталог товарів <span>/</span>Військторг<span>/</span> Тактичне взуття <span>/</span>
+        Каталог товарів  <span>/</span>
         <span className={styles.wrapper__routes__last}>{product.name}</span>
       </h3>
 
@@ -201,7 +232,7 @@ const Product: FC<any> = () => {
             <p className={styles.wrapper__container__right__price}>
               {product.special ? (
                 <>
-                  {product.special} {' '}
+                  {product.special}{' '}
                   <span className={styles.wrapper__container__right__price__old}>{product.price} </span>
                 </>
               ) : (
@@ -212,11 +243,11 @@ const Product: FC<any> = () => {
             <pre className={styles.wrapper__container__right__in_store}>
               {product.special ? (
                 <>
-                  {product.special}  <span> Замовте {product?.allOptions?.[0]?.warehouses?.[0]?.quantity} шт.</span>
+                  {product.special} <span> Замовте {product?.allOptions?.[0]?.warehouses?.[0]?.quantity} шт.</span>
                 </>
               ) : (
                 <>
-                  {product.price}  <span> Замовте {product?.allOptions?.[0]?.warehouses?.[0]?.quantity} шт.</span>
+                  {product.price} <span> Замовте {product?.allOptions?.[0]?.warehouses?.[0]?.quantity} шт.</span>
                 </>
               )}
             </pre>
@@ -246,7 +277,9 @@ const Product: FC<any> = () => {
             </div>
 
             <div className={styles.wrapper__container__right__buttons}>
-              <Button onClick={addProductBasket} LeftIcon={CartPlusIcon}>Додати в кошик</Button>
+              <Button onClick={addProductBasket} LeftIcon={CartPlusIcon}>
+                Додати в кошик
+              </Button>
 
               <Button isTransparent LeftIcon={TGIcon}>
                 Зв‘язатися з менеджером
@@ -279,8 +312,7 @@ const Product: FC<any> = () => {
                 </div>
 
                 <div className={styles.wrapper__container__footer__comments__container}>
-                {productReviews.data.length > 0 && <> {renderProductReviews}</>}
-
+                  {productReviews.data.length > 0 && <> {renderProductReviews}</>}
                 </div>
               </div>
             </div>

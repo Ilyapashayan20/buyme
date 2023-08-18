@@ -1,3 +1,4 @@
 export type TCheckboxProps = {
-  title?: string
+  title?: string,
+  checked?: any
 }

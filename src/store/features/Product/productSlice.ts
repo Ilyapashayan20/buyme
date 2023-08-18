@@ -8,9 +8,10 @@ const initialState: TProduct = {
   error: null,
 }
 
+
 export const fetchNewProductsData = createAsyncThunk('product/fetchNewProductsData', async () => {
   try {
-    const response = await api.get('/v1/products')
+    const response = await api.get(`/v1/products?filter_category_id=${process.env.REACT_APP_CATEGORY_ID}`)
 
     return response.data
   } catch (err) {

@@ -1,0 +1,40 @@
+@import 'styles/vars';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/typography';
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  gap: 12px;
+  margin: 48px auto 123px;
+  @extend %flex-column;
+
+  &__head {
+
+    width: 100%;
+    align-items: center;
+    @extend %flex-justify-between;
+    @media (max-width: 600px) {
+      padding: 0  15px;
+    }
+
+    &__title {
+      @extend %heading-3;
+      color: $black;
+      @media (max-width:600px) {
+        font-size: 20px;
+      }
+    }
+
+    &__subtitle {
+      color: $red;
+      @extend %secondary-3;
+    }
+  }
+
+  &__items {
+    margin-top: 12px;
+    @include cardsWrapper();
+  }
+}

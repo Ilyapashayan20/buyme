@@ -1,33 +1,38 @@
-import type { FC } from 'react'
+import { FC, useEffect } from 'react'
 
-import { Card, Title } from 'components'
-import { itemData } from 'utils/shared/itemsData'
-import { categoriesData } from 'components/molecules/Categories/utils'
 
 import styles from './CategoriesPage.module.scss'
+import { fetchCategoryData } from 'store/features/Category/categorySlice'
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
+import { Link } from 'react-router-dom'
 
 const CategoriesPage: FC = () => {
-  const renderCategories = categoriesData.map((element, index) => (
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    
+    dispatch(fetchCategoryData())
+  }, [dispatch])
+
+  const { rootCategory } = useAppSelector(state => state)
+
+  const categories = rootCategory.data
+
+  const renderCategories = categories.map((element:any, index:number) => (
+    <Link to={`/app/categories?category_id=${element.id}`} >
+
     <div className={styles.wrapper__categories__item} key={index}>
       <div className={styles.wrapper__categories__item__image_container}>
-        <img src={element.image} alt='category' width='100%' height='100%' />
+        <img src={element.thumb_large} alt='category' width='100%' height='100%' />
       </div>
 
-      <p className={styles.wrapper__categories__item__title}>{element.title}</p>
+      <p className={styles.wrapper__categories__item__title}>{element.name}</p>
     </div>
+    </Link>
   ))
 
-  const renderItems = itemData.map((element, index) => (
-    <Card
-      key={index}
-      image={element.image}
-      title={element.title}
-      rate={element.rate}
-      reviwers={element.reviwers}
-      price={element.price}
-    />
-  ))
-
+ 
   return (
     <div className={styles.wrapper}>
       <p className={styles.wrapper__routes}>
@@ -38,12 +43,6 @@ const CategoriesPage: FC = () => {
 
       <div className={styles.wrapper__container}>
         <div className={styles.wrapper__categories}>{renderCategories}</div>
-
-        <div className={styles.wrapper__recommend}>
-          <Title title='BuyMe рекомендує' />
-
-          <div className={styles.wrapper__recommend__content}>{renderItems}</div>
-        </div>
       </div>
     </div>
   )

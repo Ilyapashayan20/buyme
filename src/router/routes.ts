@@ -12,6 +12,10 @@ const Product = lazy(() => import('pages/Product'))
 const CategoriesPage = lazy(() => import('pages/CategoriesPage'))
 const MainCategoriesPage = lazy(() => import('pages/MainCategory'))
 const Profile = lazy(() => import('pages/Profile'))
+const Promotions = lazy(()=> import('pages/Promotions'))
+
+const userData = localStorage.getItem('userData');
+const isAuthenticated = userData !== null;
 
 const routesList: TRoutePageType[] = [
   {
@@ -20,14 +24,14 @@ const routesList: TRoutePageType[] = [
     title: 'Home',
   },
   {
-    element: Login,
+    element: isAuthenticated ? Profile : Login, 
     path: ERoutePaths.Login,
-    title: 'Login page',
+    title: isAuthenticated ? 'Profile Page' : 'Login page',
   },
   {
-    element: Signup,
+    element: isAuthenticated ? Profile : Signup,
     path: ERoutePaths.Signup,
-    title: 'Signup page',
+    title: isAuthenticated ? 'Profile Page' : 'Signup page',
   },
   {
     element: Basket,
@@ -49,7 +53,6 @@ const routesList: TRoutePageType[] = [
     path: ERoutePaths.Product,
     title: 'Product Page',
   },
-
   {
     element: CategoriesPage,
     path: ERoutePaths.CategoriesPage,
@@ -61,10 +64,17 @@ const routesList: TRoutePageType[] = [
     title: 'Categories Page',
   },
   {
-    element:Profile,
+    element: Profile,
     path: ERoutePaths.Profile,
     title: 'Profile Page',
   },
+  {
+    element: Promotions,
+    path: ERoutePaths.Promotions,
+    title: 'Promotions Page',
+  },
+
+  
 ]
 
 export default routesList

@@ -22,11 +22,11 @@ const handleClose = ()=>{
 
         <div>
           <p>Вартість замовлення</p>
-          <span>{data.total_format}</span>
+          <span>{data?.total_format}</span>
         </div>
         <div className={styles.wrapper__prices__footer}>
           <p>До оплати без доставки</p>
-          <span>{data.total_format}</span>
+          <span>{data?.total_format}</span>
         </div>
       </div>
       <div className={styles.wrapper__buttons}>
@@ -38,7 +38,7 @@ const handleClose = ()=>{
             <Link to='/placing'>
               <Button>Оформити замовлення</Button>
             </Link>
-            <Button onClick={()=>setShowOrder(true)} className={styles.wrapper__buttons__btn_2}>Замовити в один клік</Button>
+            {/* <Button onClick={()=>setShowOrder(true)} className={styles.wrapper__buttons__btn_2}>Замовити в один клік</Button> */}
           </>
         )}
       </div>

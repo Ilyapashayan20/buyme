@@ -4,6 +4,8 @@ import { Button, Checkbox } from 'components'
 import styles from '../Auth.module.scss'
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
 import { loginUser } from 'store/features/Auth/loginSlice'
+import InputMask from 'react-input-mask';
+
 
 const Login: FC = () => {
   const dispatch = useAppDispatch()
@@ -16,10 +18,17 @@ const Login: FC = () => {
 
   const navigate = useNavigate();
 
-  const auth = loginSlice.data
-  const isLoggedIn = auth !== null;
 
 
+  const userData = localStorage.getItem('userData');
+  const isAuthenticated = userData !== null;
+
+
+  useEffect(()=>{
+    if (isAuthenticated) {
+      navigate('/profile')
+    }
+  }, [isAuthenticated])
 
   const handleLogin = async () => {
     if (telephone && password) {
@@ -32,19 +41,18 @@ const Login: FC = () => {
     }
   }
 
-  useEffect(()=>{
-    if (isLoggedIn) {
-      navigate('/profile')
-    }
-  })
+
 
 
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.wrapper__title}>Вхід</h1>
+
       <div className={styles.wrapper__input__wrapper}>
         <label className={styles.wrapper__input__wrapper__label}>Телефон</label>
-        <input
+        <InputMask
+          mask="+38 (099) 999-99-99" 
+          maskChar="_" 
           style={{ border: isTelephoneValid ? '1px solid #95959533' : '1px solid #ab0000' }}
           className={styles.wrapper__input__wrapper__input}
           type='tel'

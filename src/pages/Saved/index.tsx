@@ -10,6 +10,7 @@ const Saved: FC = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    
     dispatch(fetchWatchList())
   }, [dispatch])
 
@@ -41,7 +42,6 @@ const Saved: FC = () => {
         <>
           <div className={styles.wrapper__head}>
             <h3 className={styles.wrapper__head__title}>Вподобані товари</h3>
-            <p className={styles.wrapper__head__subtitle}>Видалити обрані</p>
           </div>
           <div className={styles.wrapper__items}>{renderItems}</div>
         </>

@@ -1,5 +1,5 @@
 export type TFilterProps = {
-    title: string,
-    items?: string[],
-    warehouse: boolean,
+    filter:any,
+    openBlockIndex: number | null
+    setOpenBlockIndex: React.Dispatch<React.SetStateAction<number | null>>
 }

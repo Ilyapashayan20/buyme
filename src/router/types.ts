@@ -18,5 +18,7 @@ export enum ERoutePaths {
   CategoriesPage = '/categories',
   MainCategoriesPage= '/app/categories',
   Profile = '/profile',
+  Promotions = '/promotions',
+
   Error = '*',
 }

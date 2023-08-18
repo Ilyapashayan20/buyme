@@ -6,6 +6,11 @@ import { loginSlice } from './features/Auth/loginSlice'
 import { registrationSlice } from './features/Auth/registrationSlice'
 import { watchlist } from './features/Watchlist/watchListSlice'
 import { basket } from './features/Basket/basketSlice'
+import { searchSlice } from './features/Search/searchSlice'
+import siteCategorySlice from './siteCategorySlice'
+
+
+
 
 const store = configureStore({
   reducer: {
@@ -19,6 +24,8 @@ const store = configureStore({
     registerSlice:registrationSlice.reducer,
     watchlistSLice: watchlist.reducer,
     basketSlice: basket.reducer,
+    search: searchSlice.reducer,
+    siteCategory:siteCategorySlice,
   },
 })
 

@@ -29,7 +29,7 @@ const Home: FC = () => {
   useEffect(() => {
     dispatch(fetchCategoryData())
     dispatch(fetchNewProductsData())
-    dispatch(fetchProductById(9242))
+    dispatch(fetchProductById(15596))
     dispatch(fetchStockProductsData())
   }, [dispatch])
 

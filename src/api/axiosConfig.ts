@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 
 const getToken = () => {
   const userDataString = localStorage.getItem('userData');
@@ -13,18 +13,33 @@ const getToken = () => {
 
 
 const api: AxiosInstance = axios.create({
-  baseURL: 'https://staging-1.buymeua.shop/api',
+  baseURL: 'https://buymeua.shop/api',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization ': ` Bearer ${getToken()}`,
   },
-})
+});
+
+api.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+
+    return Promise.reject(error);
+  }
+);
 
 api.interceptors.response.use(
   (response: AxiosResponse) => response.data,
   (error: AxiosError) => {
-    return Promise.reject(error)
-  }
-)
 
-export default api
+    return Promise.reject(error);
+  }
+);
+
+export default api;

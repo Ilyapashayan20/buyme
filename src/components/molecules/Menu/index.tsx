@@ -1,27 +1,29 @@
 import { type FC, useState, useRef } from 'react'
 import classNames from 'classnames'
 
-import { ArrowRIghtIcon, CloseIcon, ListIcon } from 'assets'
+import { ArrowRIghtIcon, CloseIcon, ListIcon, NotFoundImage } from 'assets'
 
 import styles from './Menu.module.scss'
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector'
 import { fetchCategoryTreeData } from 'store/features/Category/categorySlice'
+import { useLockBodyScroll, useOnClickOutside } from 'hooks'
 
 const Menu: FC = () => {
   const [droped, setDroped] = useState<boolean>(false)
   const [renderItem2, setRenderItem2] = useState<any>()
   const ref = useRef(null)
 
+  useOnClickOutside(ref, () => setDroped(false))
+  useLockBodyScroll(!droped)
+
   const dispatch = useAppDispatch()
   const { categoryTree } = useAppSelector(state => state)
   const catalogItems = categoryTree.data ? categoryTree.data : []
-  const [activeCategory, setActiveCategory] = useState<string | null>(null); // Track active category
-
+  const [activeCategory, setActiveCategory] = useState<string | null>(null) // Track active category
 
   const handleDropping = () => {
     dispatch(fetchCategoryTreeData())
     setDroped(true)
-    console.log(categoryTree.data)
   }
 
   const handleDroppingClose = () => {
@@ -30,24 +32,23 @@ const Menu: FC = () => {
 
   const handleMouseOverCategory = (category: any) => {
     setRenderItem2(category.childrens)
-    setActiveCategory(category.id); 
-
+    setActiveCategory(category.id)
   }
 
   const renderCatalogItem = catalogItems.map((element: any, index: number) => (
-    <div
-      key={index}
-      className={classNames(styles.wrapper__dropdown__left__item, {
-        [styles.wrapper__dropdown__left__item__active]: activeCategory === element.id, 
-      })}
-      onMouseOver={() => handleMouseOverCategory(element)}
-    >
-      <div>
-        <img  src={element.icon} />
-        <p className={styles.wrapper__dropdown__left__item__text}>{element.name}</p>
-      </div>
-      <ArrowRIghtIcon />
-    </div>
+      <a href={`/app/categories?category_id=${element.id}`}
+        key={index}
+        className={classNames(styles.wrapper__dropdown__left__item, {
+          [styles.wrapper__dropdown__left__item__active]: activeCategory === element.id,
+        })}
+        onMouseOver={() => handleMouseOverCategory(element)}
+      >
+        <div>
+          <img src={element.icon || NotFoundImage} />
+          <p className={styles.wrapper__dropdown__left__item__text}>{element.name}</p>
+        </div>
+        <ArrowRIghtIcon />
+      </a>
   ))
 
   return (
@@ -76,10 +77,24 @@ const Menu: FC = () => {
             <div className={styles.wrapper__dropdown__right__item}>
               {renderItem2 &&
                 renderItem2.map((data: any, index: number) => (
-                  <div key={index}>
-                    <h1 style={{ color: '#ab0000', fontWeight: 400 }}>{data.name}</h1>
+                  <div
+                    style={{ textTransform: 'capitalize', display: 'flex', flexDirection: 'column', gap: '10px' }}
+                    key={index}
+                  >
+                    <a
+                      href={`/app/categories?category_id=${data.id}`}
+                      style={{ cursor: 'pointer', color: '#ab0000', fontWeight: 400, fontSize: '16px' }}
+                    >
+                      {data.name}
+                    </a>
                     {data.childrens?.map((child: any, index: number) => (
-                      <h1 key={index}>{child.name}</h1>
+                      <a
+                        href={`/app/categories?category_id=${child.id}`}
+                        style={{ cursor: 'pointer', color: '#4c5563', fontWeight: 300, fontSize: '16px' }}
+                        key={index}
+                      >
+                        {child.name}
+                      </a>
                     ))}
                   </div>
                 ))}

@@ -19,6 +19,7 @@
     padding: 12px 0px;
     gap: 24px;
     &__title{
+      color: black;
         font-weight: 500;
         @extend %micro-3;
         span{
